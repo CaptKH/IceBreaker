@@ -22,8 +22,8 @@ public:
 	
 	/* LookAt */
 	/*	Points camera in direction of specified point */
-	/*  Matrix4 point: matrix used to find vector to look at */
-	Matrix4 LookAt(Matrix4 point);
+	/*  Vector4 point: point to look at */
+	Matrix4 LookAt(Vector4 point);
 	
 };
 #endif

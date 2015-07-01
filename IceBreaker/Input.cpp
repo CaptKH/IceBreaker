@@ -44,10 +44,10 @@ void Input::GetInput(GLFWwindow* window, Camera& cam) {
 	}
 	// Scale Down
 	if(glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
-		cam.position = Mat4::Scale(Vector4(0.999 , 0.999 ,0.999, 1)) * cam.position;
+		cam.position = Mat4::Translate(0.0f, 0.0f, 0.005f) * cam.position;
 	}
 	// Scale Up
 	if(glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
-		cam.position = Mat4::Scale(Vector4(1.001 , 1.001 ,1.001, 1)) * cam.position;
+		cam.position = Mat4::Translate(0.0f, 0.0f, -0.005f) * cam.position;
 	}
 }

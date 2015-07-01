@@ -4,34 +4,44 @@
 
 #ifndef GLRENDERER
 #define GLRENDERER
-#define GLEW
+
+#ifndef OPEN_GL
+#define OPEN_GL
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
+#endif
+
 
 #include <vector>
 #include <iostream>
-#include <GL\glew.h>
-#include <GLFW\glfw3.h>
 #include "Matrix4.h"
 #include "Camera.h"
 #include "FileIO.h"
+#include "Particle.h"
+#include "MeshRegistry.h"
 
 enum RenderMode { WIREFRAME = 0, FILLED = 1 };
 
 class GLRenderer
 {
 	GLuint vertexArrayObj;
-	GLuint vertexBufferObj;
 	GLuint fragmentBufferObj;
+	GLuint textureBufferObj;
 
+	// Shader variables
 	GLuint shaderProgramID;
 	GLuint mvpUniformID;
 	GLuint colorID;
 
-	Camera* camera;
-
+	// Model-View-Projection matrix
+	Matrix4 mvp;
 	Matrix4 projection;
+
+	MeshRegistry* meshRegistry;
 
 public:
 	GLFWwindow* window;
+	Camera* camera;
 
 	/* Constructor */
 	GLRenderer(void);
@@ -47,12 +57,11 @@ public:
 	/*	Clears screen and calls necessary GL draw-cycle functions */
 	void DrawRefresh(void);
 
-	/* DrawCube */
-	/*	Draws a cube to OpenGL screen */
-	/*  Matrix4& model: model matrix of cube */
-	/*  Matrix4& mview: Mview matrix of camera */
+	/* Draw */
+	/*  Draw a triangle to OpenGL screen */
+	/*  Particle p: particle to draw */
 	/*	RenderMode r: whether to render in wireframe, filled, etc. */
-	void DrawCube(Matrix4& model, Matrix4& view, RenderMode r);
+	void Draw(Particle* p, RenderMode r);
 private:
 	/* CreateWindow */
 	/*	Creates OpenGL window to render to */
@@ -73,9 +82,7 @@ private:
 
 	/* GeneraFragmentBuffer */
 	/*	Creates and binds a new Fragment Buffer Object */
-	/*	GLuint vbo: VBO to bind to */
-	/*  GLfloat data[]: buffer data to use */
-	void GenerateFragmentBuffer(GLuint fbo, GLfloat data[]);
+	void GenerateFragmentBuffer(void);
 
 	/* LoadShader */
 	/*	Loads shader from specified file */

@@ -6,8 +6,6 @@
 
 /* Constructor */
 Matrix4::Matrix4(float num) {
-	PI = 3.14159;
-
 	for(int i = 0; i < 4; i++) {
 		for(int j = 0; j < 4; j++) {
 			if(i == j)
@@ -18,23 +16,25 @@ Matrix4::Matrix4(float num) {
 	}
 }
 
-/* Constructor */
-Matrix4::Matrix4(bool position) {
+/* Destructor */
+Matrix4::~Matrix4(void) {
+}
+
+/* Transpose */
+void Matrix4::Transpose(void) {
+	float newMatrix[4][4];
+
 	for(int i = 0; i < 4; i++) {
 		for(int j = 0; j < 4; j++) {
-			if(i == j)
-				matrix[i][j] = 1.0;
-			else
-				matrix[i][j] = 0;
+			newMatrix[j][i] = matrix[i][j];
 		}
 	}
 
-	if(!position)
-		matrix[3][3] = 0;
-}
-
-/* Destructor */
-Matrix4::~Matrix4(void) {
+	for(int i = 0; i < 4; i++) {
+		for(int j = 0; j < 4; j++) {
+			matrix[i][j] = newMatrix[i][j];
+		}
+	}
 }
 
 /* Print */
@@ -143,43 +143,60 @@ namespace Mat4 {
 	}
 
 	/* Scale */
-	Matrix4 Scale(Vector4& vec) {
-		Matrix4 mat = Matrix4(1.0f);
+	Matrix4 Scale(float s) {
+		Matrix4 mat = Matrix4(0.0f);
 
-		mat[0][0] = vec.x;
-		mat[1][1] = vec.y;
-		mat[2][2] = vec.z;
+		mat[0][0] = s;
+		mat[1][1] = s;
+		mat[2][2] = s;
+				
+		return mat;
+	}
 
+	/* Scale */
+	Matrix4 Scale(float x, float y, float z) {
+		Matrix4 mat = Matrix4(0.0f);
+
+		mat[0][0] = x;
+		mat[1][1] = y;
+		mat[2][2] = z;
+				
 		return mat;
 	}
 
 	/* LookAt */
-	Matrix4 LookAt(Vector4& eye, Vector4& point, Vector4& _up) {
+	Matrix4 LookAt(Vector4& eye, Vector4& point, Vector4& up) {
 		Vector4 forward = point - eye;
 		forward.Normalize();
-		_up.Normalize();
 
-		Vector4 side = forward.CrossProduct(_up);
+		up.Normalize();
+
+		Vector4 side = forward.CrossProduct(up);
 		side.Normalize();
 
-		Vector4 up = side.CrossProduct(forward);
+		up = forward.CrossProduct(side);
+		up.Normalize();
 
 		Matrix4 toReturn = Matrix4(1.0f);
 		toReturn[0][0] = side.x;
 		toReturn[1][0] = side.y;
 		toReturn[2][0] = side.z;
+		toReturn[3][0] = -side.DotProduct(eye);
 
 		toReturn[0][1] = up.x;
 		toReturn[1][1] = up.y;
 		toReturn[2][1] = up.z;
+		toReturn[3][1] = -up.DotProduct(eye);
 
 		toReturn[0][2] = -forward.x;
 		toReturn[1][2] = -forward.y;
 		toReturn[2][2] = -forward.z;
-
-		toReturn[3][0] = -side.DotProduct(eye);
-		toReturn[3][1] = -up.DotProduct(eye);
 		toReturn[3][2] = -forward.DotProduct(eye);
+
+		toReturn[0][3] = 0;
+		toReturn[1][3] = 0;
+		toReturn[2][3] = 0;
+		toReturn[3][3] = 1.0f;
 
 		return toReturn;
 	}
@@ -194,8 +211,8 @@ namespace Mat4 {
 		toReturn[1][1] = 1 / tanHalfFovy;
 		toReturn[2][2] = -(zFar + zNear) / (zFar - zNear);
 		toReturn[2][3] = -1;
-		toReturn[3][2] = -(2 * zFar * zFar * zNear) / (zFar - zNear);
-		toReturn[3][3] = 0;
+		toReturn[3][2] = -(2 * zFar * zNear) / (zFar - zNear);
+		toReturn[3][3] = 0.0f;
 		return toReturn;
 	}
 }

@@ -3,10 +3,16 @@
 /* Created: 6/15/2015         */
 #include "Cube.h"
 
+/* Default Constructor */
+Cube::Cube(void) : Particle() {
+	meshID = "Cube";
+}
+
 /* Constructor */
-Cube::Cube(Matrix4 pos) {
-	position = pos;
-	rotation = Matrix4(1.0f);
+Cube::Cube(Matrix4 t, Matrix4 r, Matrix4 s) 
+	: Particle(t, r, s) {
+
+	meshID = "Cube";
 }
 
 /* Destructor */

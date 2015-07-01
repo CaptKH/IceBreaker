@@ -2,17 +2,23 @@
 /* Creator: Kirk Hewitt       */
 /* Created: 6/15/2015         */
 
+#include "Particle.h"
 #include "Matrix4.h"
 
-class Cube
+/* Cube */
+/*  ** It's a cube! */
+class Cube : public Particle
 {
 public:
-	Matrix4 position;
-	Matrix4 rotation;
+	public:
+	/* Constructor */
+	Cube(void);
 
 	/* Constructor */
-	/*  Matrix4 pos: initial position */
-	Cube(Matrix4 pos);
+	/*  **** Matrix4 t: translation matrix */
+	/*  **** Matrix4 r: rotation matrix */
+	/*  **** Matrix4 s: scale matrix */
+	Cube(Matrix4 t, Matrix4 r, Matrix4 s);
 
 	/* Destructor */
 	~Cube(void);

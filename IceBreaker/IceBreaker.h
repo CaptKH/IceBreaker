@@ -12,23 +12,22 @@
 #include <vector>
 #include <math.h>
 #include <time.h>
+
 #include "GLRenderer.h"
-#include "GameObject.h"
+#include "MeshRegistry.h"
 #include "Camera.h"
 #include "Input.h"
+#include "GameObject.h"
 #include "Cube.h"
 
 using namespace std;
 
 class IceBreaker
 {
-	Camera* camera;
 	GLRenderer* renderer;
 	Input* input;
 	Cube* cube1;
 	Cube* cube2;
-
-	vector<GameObject*> gameObjects;
 
 public:
 	/* Constructor */

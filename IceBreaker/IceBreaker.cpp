@@ -6,18 +6,16 @@
 
 /* Constructor */
 IceBreaker::IceBreaker(void) {
-	camera = new Camera(Mat4::Translate(0.0f, 0.0f, 0.0f));
 	renderer = new GLRenderer();
 	input = new Input();
-	cube1 = new Cube(Mat4::Translate(0.5f, 0.5f, 0.0f));
-	cube2 = new Cube(Mat4::Translate(-0.5f, 0.5f, 0.5f));
+	cube1 = new Cube();
+	cube2 = new Cube();
+
+	cube2->translation = Mat4::Translate(3.0f, 2.0f, 0.0f);
 }
 
 /* Destructor */
 IceBreaker::~IceBreaker(void) {
-	if(camera != nullptr)
-		delete camera;
-		camera = nullptr;
 	if(renderer != nullptr)
 		delete renderer;
 		renderer = nullptr;
@@ -32,16 +30,17 @@ void IceBreaker::Initialize() {
 void IceBreaker::Run() {
 	do {
 		// Get user input
-		input->GetInput(renderer->window, *camera);
+		input->GetInput(renderer->window, *renderer->camera);
 
 		// Refresh screen
 		renderer->DrawRefresh();
-		
 
-		Matrix4 view = camera->position * camera->rotation * Mat4::Scale(Vector4(0.5, 0.5, 0.5, 0.5));
+		// MVP
+		Matrix4 model = Matrix4(1.0f);
+		Matrix4 projection = Mat4::Perspective(3.14159f/4.0f, 4.0f/3.0f, 0.1f, 100.0f);
 
-		renderer->DrawCube(cube1->position, view, RenderMode::FILLED);
-		renderer->DrawCube(cube2->position, view, RenderMode::FILLED);
+		renderer->Draw(cube1, RenderMode::FILLED);
+		renderer->Draw(cube2, RenderMode::FILLED);
 
 		glfwSwapBuffers(renderer->window);
 		glfwPollEvents();

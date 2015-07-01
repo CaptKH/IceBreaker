@@ -9,8 +9,8 @@
 
 using namespace std;
 
-/* Vector3 */
-/*	Contains functionality necessary to perform 3D vector operations */
+/* Vector4 */
+/*	** Contains functionality necessary to perform 3D Vector operations */
 class Vector4
 {
 public:
@@ -20,40 +20,40 @@ public:
 	float w; // Buffer
 
 	/* Constrcutor */
-	/*	float _x: X-coordinate */
-	/*	float _y: Y-coordinate */
-	/*	float _z: Z-coordinate */
-	/*	float _w: Buffer */
+	/*	**** float _x: X-coordinate */
+	/*	**** float _y: Y-coordinate */
+	/*	**** float _z: Z-coordinate */
+	/*	**** float _w: Buffer */
 	Vector4(float _x = 0, float _y = 0, float _z = 0, float _w = 0);
 
 	/* Destructor */
 	~Vector4(void);
 
 	/* Magnitude */
-	/*	Returns the magnitude of the vector */
+	/*  ** Returns the magnitude of the vector */
 	float Magnitude(void);
 
 	/* Normalize */
-	/*	Normalizes vector */
+	/*	** Normalizes vector */
 	void Normalize(void);
 
 	/* DotProduct */
-	/*	Returns the dot product between other vector */
-	/*		Vector4 vec: vector needed for calculation */
+	/* 	** Returns the dot product between other vector */
+	/*	**** Vector4 vec: vector needed for calculation */
 	float DotProduct(Vector4& vec);
 
 	/* AngleBetween */
-	/*	Returns the angle between other vector in radians */
-	/*		Vector4 vec: vector needed for calculation */
+	/*	** Returns the angle between other vector in radians */
+	/*	**** Vector4 vec: vector needed for calculation */
 	float AngleBetween(Vector4& vec);
 	
 	/* CrossProduct */
-	/*	Returns the cross product between other vector */
-	/*		Vector4 vec: vector needed for calculation */
+	/* ** Returns the cross product between other vector */
+	/* ****	Vector4 vec: vector needed for calculation */
 	Vector4 CrossProduct(Vector4& vec);
 
 	/* Print */
-	/*	Returns readable string representation of Vector4 */
+	/* ** Returns readable string representation of Vector4 */
 	string Print(void);
 
 	/* Operator Overloads */
