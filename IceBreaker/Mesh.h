@@ -11,35 +11,23 @@
 #include <GLFW\glfw3.h>
 #endif
 
-#include <string>
+#include "GLShaderData.h"
 
 using namespace std;
 
-class Mesh
+class Mesh : public GLShaderData
 {
-	string ID;
-	GLuint vertexBuffer;
-	int numIndicies;
-	int numVertices;
-
 public:
 	/* Constructor */
-	Mesh(string _ID, GLuint vbo, int nIndicies);
+	/*  **** string _ID: Identification for registry */
+	/*  **** GLuint bID: Location on GPU */
+	/*  **** int nVertices: Number of indicies in shader data array */
+	Mesh(string _ID, GLuint bID, int nIndicies);
 
 	/* Destructor */
 	~Mesh(void);
 
-	/* GetID */
-	/*  Returns string ID of Mesh */
-	string GetID(void);
-
-	/* GetNumIndicies */
-	/*  Returns numer of indicies in mesh */
-	int GetNumIndicies(void);
-
-	/* GetVBO */
-	/*  Returns vertexBuffer of mesh */
-	GLuint GetVBO(void);
+	void AddElement(GLShaderData sData);
 };
 #endif
 

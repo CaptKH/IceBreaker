@@ -25,6 +25,12 @@ Particle::Particle(Matrix4 t, Matrix4 r, Matrix4 s) {
 Particle::~Particle(void) {
 }
 
+/* TransformMatrix */
+Matrix4 Particle::TransformMatrix(void) {
+	Matrix4 toReturn = translation * rotation * scale;
+	return toReturn;
+}
+
 /* GetMeshID */
 string Particle::GetMeshID(void) {
 	return meshID;

@@ -12,17 +12,20 @@
 class Input
 {
 public:
+
 	/* Constructor */
-	/*	Camera* cam: character-controlled camera used in scene */
+	/*	** Camera* cam: character-controlled camera used in scene */
 	Input();
 
 	/* Destructor */
 	~Input(void);
 
 	/* GetInput */
-	/*  Handles processing of user input */
-	/*  GLFWwindow* window: window to get input from */
-	void GetInput(GLFWwindow* window, Camera& cam);
+	/*  ** Handles processing of user input */
+	/*  **** GLFWwindow* window: Window to get input from */
+	/*  **** Camera& cam: Camera to move */
+	/*  **** double deltaTime: Time since last frame */
+	void GetInput(GLFWwindow* window, Camera& cam, double deltaTime);
 };
 #endif
 

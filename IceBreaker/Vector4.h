@@ -24,7 +24,7 @@ public:
 	/*	**** float _y: Y-coordinate */
 	/*	**** float _z: Z-coordinate */
 	/*	**** float _w: Buffer */
-	Vector4(float _x = 0, float _y = 0, float _z = 0, float _w = 0);
+	Vector4(float _x = 0, float _y = 0, float _z = 0, float _w = 1);
 
 	/* Destructor */
 	~Vector4(void);

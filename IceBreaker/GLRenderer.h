@@ -19,9 +19,12 @@
 #include "FileIO.h"
 #include "Particle.h"
 #include "MeshRegistry.h"
+#include "TextureRegistry.h"
 
 enum RenderMode { WIREFRAME = 0, FILLED = 1 };
 
+/* GLRenderer */
+/*  ** Central OpenGL processor,  handles almost all OpenGL configuration/running */
 class GLRenderer
 {
 	GLuint vertexArrayObj;
@@ -38,10 +41,18 @@ class GLRenderer
 	Matrix4 projection;
 
 	MeshRegistry* meshRegistry;
+	TextureRegistry* textureRegistry;
 
 public:
 	GLFWwindow* window;
 	Camera* camera;
+
+	int windowWidth;
+	int windowHeight;
+
+	double mouseX; // Mouse x-coordinate in window
+	double mouseY; // Mouse y-coordinate in window
+	double deltaTime; // Time since last frame
 
 	/* Constructor */
 	GLRenderer(void);
@@ -53,16 +64,28 @@ public:
 	/*	Initializes functionality necessary to operate in an OpenGL environment */
 	int Initialize(void);
 
-	/* DrawRefresh */
+	/* Update */
 	/*	Clears screen and calls necessary GL draw-cycle functions */
-	void DrawRefresh(void);
+	void Update(void);
 
 	/* Draw */
 	/*  Draw a triangle to OpenGL screen */
-	/*  Particle p: particle to draw */
-	/*	RenderMode r: whether to render in wireframe, filled, etc. */
+	/*  Particle p: Particle to draw */
+	/*	RenderMode r: Whether to render in wireframe, colored, etc. */
 	void Draw(Particle* p, RenderMode r);
+
+	/* Draw */
+	/*  Draw a triangle to OpenGL screen */
+	/*  Particle p: Particle to draw */
+	/*	Texture* t: whether to render in wireframe, filled, etc. */
+	void Draw(Particle* p, Texture* t);
 private:
+	double previousTime;
+
+	/* DrawRefresh */
+	/*  ** Refreshes necessary OpenGL drawing functionality */
+	void DrawRefresh(void);
+
 	/* CreateWindow */
 	/*	Creates OpenGL window to render to */
 	/*	int w: window width */

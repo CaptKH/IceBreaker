@@ -30,6 +30,10 @@ public:
 	/* Destructor */
 	~Particle(void);
 
+	/* TransformMatrix */
+	/*  ** Returns transform matrix of particle */
+	Matrix4 TransformMatrix(void);
+
 	/* GetMeshID */
 	/*  Returns MeshID */
 	string GetMeshID(void);

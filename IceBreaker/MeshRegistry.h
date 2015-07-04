@@ -5,7 +5,6 @@
 #ifndef MESH_REGISTRY
 #define MESH_REGISTRY
 
-#include <string>
 #include <vector>
 #include "Mesh.h"
 
@@ -15,7 +14,7 @@ using namespace std;
 /*  ** Library for various meshes used in the IceBreaker engine */
 class MeshRegistry
 {
-	vector<Mesh*> registry; // Holds meshes
+	vector<Mesh*> registry; // Library of meshes
 
 public:
 	/* Constructor */
@@ -28,15 +27,15 @@ public:
 	/*  ** Populates registry list with meshes of common shapes and objects */
 	void GenerateShapes(void);
 
+	/* GetMesh */
+	/*  ** Returns specified Mesh from registry */
+	/*  **** string id: ID of mesh to find */
+	Mesh* GetMesh(string id);
+
 	/* AddMesh */
 	/*  ** Adds mesh to registry */
-	/*  **** Mesh* mesh: mesh to add */
-	void AddMesh(Mesh* mesh);
-
-	/* GetMesh */
-	/*  ** Returns specified mesh from list, otherwise returns nullptr (/
-	/*  **** string ID: mesh ID to search for */
-	Mesh* GetMesh(string ID);
+	/*  **** Mesh* toAdd: Well duh */
+	Mesh* AddMesh(Mesh* toAdd);
 
 private:
 	/* GenerateTriangle */

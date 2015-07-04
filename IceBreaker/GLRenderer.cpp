@@ -6,6 +6,8 @@
 
 /* Constructor */
 GLRenderer::GLRenderer(void) {
+	deltaTime = 0.0f;
+	previousTime = 0.0f;
 }
 
 /* Destructor */
@@ -41,31 +43,38 @@ int GLRenderer::Initialize(void) {
 	shaderProgramID = LoadShaderProgram();
 
 	// Create Camera
-	camera = new Camera(Mat4::Translate(0, 0, 0));
+	camera = new Camera(Vector4(0, 0, 0, 1));
 
 	mvp = Matrix4(1.0f);
-	projection = Mat4::Perspective(3.14159/4, 4.0f/3.0f, 0.1f, 1000.0f);
+	projection = Mat4::Perspective(3.14159/4, 4.0f/3.0f, 0.1f, 100.0f);
 
 	meshRegistry = new MeshRegistry();
 	meshRegistry->GenerateShapes();
 
 	mvpUniformID = glGetUniformLocation(shaderProgramID, "MVP");
-	textureBufferObj = LoadBMP("uvtemplate.bmp");
+	textureBufferObj = LoadBMP("Textures/uvtemplate.bmp");
 
 	return 1;
 }
 
 /* Draw */
-void GLRenderer::DrawRefresh(void) {
-	glClearColor(0.235294, 0.701961, 0.443137, 1.0);
-	// Enable depth test
-	glEnable(GL_DEPTH_TEST);
-	// Accept fragment if it closer to the camera than the former one
-	glDepthFunc(GL_LESS);
+void GLRenderer::Update(void) {
+	// Refresh screen
+	DrawRefresh();
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// Get current window size
+	glfwGetWindowSize(window, &windowWidth, &windowHeight);
 
-	mvp = projection * camera->LookAt(Vector4(0, 0, 0, 1)) * Mat4::Scale(0.1f, 0.1f, 0.1f);
+	// Get current mouse position
+	glfwGetCursorPos(window, &mouseX, &mouseY);
+
+	// Get delta time
+	deltaTime = glfwGetTime() - previousTime;
+	previousTime = glfwGetTime();
+
+	Matrix4 view = camera->Update(windowWidth, windowHeight, mouseX, mouseY, deltaTime);
+
+	mvp = projection * view;
 }
 
 /* DrawCube */
@@ -96,7 +105,7 @@ void GLRenderer::Draw(Particle* p, RenderMode r) {
 		(void*)0
 	);
 
-	Matrix4 pMVP = mvp * p->translation;
+	Matrix4 pMVP = mvp * p->TransformMatrix();
 
 	// GL_TRUE GODDAM IT!! 6/30/2015
 	glUniformMatrix4fv(mvpUniformID, 1, GL_TRUE, &pMVP[0][0]);
@@ -113,6 +122,17 @@ void GLRenderer::Draw(Particle* p, RenderMode r) {
 }
 
 #pragma region Private Methods
+
+/* DrawRefresh */
+void GLRenderer::DrawRefresh(void) {
+	glClearColor(0.235294, 0.701961, 0.443137, 1.0);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_CULL_FACE);
+	glMatrixMode(GL_PROJECTION);
+}
 
 /* CreateWindow */
 int GLRenderer::CreateWindow(int w, int h) {

@@ -6,17 +6,10 @@
 
 /* Constructor */
 MeshRegistry::MeshRegistry(void) {
-	registry = vector<Mesh*>();
 }
 
 /* Destructor */
 MeshRegistry::~MeshRegistry(void) {
-	for(Mesh* m : registry) {
-		if(m != nullptr) {
-			delete m;
-			m = nullptr;
-		}
-	}
 }
 
 /* GenerateShapes */
@@ -31,19 +24,22 @@ void MeshRegistry::GenerateShapes(void) {
 	GenerateCube();
 }
 
-/* AddMesh */
-void MeshRegistry::AddMesh(Mesh* m) {
-	registry.push_back(m);
-}
-
 /* GetMesh */
-Mesh* MeshRegistry::GetMesh(const string ID) {
+Mesh* MeshRegistry::GetMesh(string id) {
 	for(Mesh* m : registry) {
-		if(m->GetID() == ID)
+		if(m->GetID() == id)
 			return m;
 	}
 
 	return nullptr;
+}
+
+/* AddMesh */
+Mesh* MeshRegistry::AddMesh(Mesh* toAdd) {
+	if(toAdd != nullptr)
+		registry.push_back(toAdd);
+
+	return toAdd;
 }
 
 #pragma region Shapes Meshes
@@ -85,7 +81,7 @@ void MeshRegistry::GenerateSquare(void) {
 
 /* GenerateCube */
 void MeshRegistry::GenerateCube(void) {
-	GLfloat squareVertexData[] = {
+	GLfloat cubeVertexData[] = {
 		-0.5f,-0.5f,-0.5f, 
 		-0.5f,-0.5f, 0.5f,
 		-0.5f, 0.5f, 0.5f, 
@@ -127,7 +123,8 @@ void MeshRegistry::GenerateCube(void) {
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(squareVertexData), squareVertexData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertexData), cubeVertexData, GL_STATIC_DRAW);
+
 
 	AddMesh(new Mesh("Cube", vbo, 36));
 }

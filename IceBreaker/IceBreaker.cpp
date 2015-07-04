@@ -12,6 +12,7 @@ IceBreaker::IceBreaker(void) {
 	cube2 = new Cube();
 
 	cube2->translation = Mat4::Translate(3.0f, 2.0f, 0.0f);
+	cube1->scale = Mat4::Scale(0.1f);
 }
 
 /* Destructor */
@@ -30,10 +31,10 @@ void IceBreaker::Initialize() {
 void IceBreaker::Run() {
 	do {
 		// Get user input
-		input->GetInput(renderer->window, *renderer->camera);
+		input->GetInput(renderer->window, *renderer->camera, renderer->deltaTime);
 
 		// Refresh screen
-		renderer->DrawRefresh();
+		renderer->Update();
 
 		// MVP
 		Matrix4 model = Matrix4(1.0f);
