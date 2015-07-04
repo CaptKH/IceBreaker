@@ -90,7 +90,7 @@ private:
 	/*	Creates OpenGL window to render to */
 	/*	int w: window width */
 	/*	int h: window height */
-	int CreateWindow(int w = 720, int h = 480);
+	int CreateWindow(int w = 853, int h = 480);
 
 	/* GenerateVAO */
 	/*	Creates and binds a new Vertex Array Object */

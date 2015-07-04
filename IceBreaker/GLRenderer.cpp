@@ -36,7 +36,6 @@ int GLRenderer::Initialize(void) {
 
 	// Create/bind VAO
 	GenerateVAO(vertexArrayObj);
-
 	// Create/bind Fragmnt Buffer
 	GenerateFragmentBuffer();
 
@@ -52,6 +51,8 @@ int GLRenderer::Initialize(void) {
 
 	mvpUniformID = glGetUniformLocation(shaderProgramID, "MVP");
 	textureBufferObj = LoadBMP("Textures/uvtemplate.bmp");
+
+	glEnable(GL_DEPTH_TEST);
 
 	return 1;
 }
@@ -72,7 +73,9 @@ void GLRenderer::Update(void) {
 	previousTime = glfwGetTime();
 
 	Matrix4 view = camera->Update(windowWidth, windowHeight, mouseX, mouseY, deltaTime);
-	projection = Mat4::Perspective(3.14159/3, windowWidth/windowHeight, 0.1f, 100.0f);
+	projection = Mat4::Perspective(3.14159/4, 4.0f/3.0f, 0.1f, 2.0f);
+
+	Vector4 projVec = projection * Vector4(1, 1, 1, 1);
 
 	mvp = projection * view;
 }
@@ -125,13 +128,12 @@ void GLRenderer::Draw(Particle* p, RenderMode r) {
 
 /* DrawRefresh */
 void GLRenderer::DrawRefresh(void) {
-	glClearColor(0.235294, 0.701961, 0.443137, 1.0);
-	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
+	glClearColor(0.235294, 0.701961, 0.443137, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_CULL_FACE);
 	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 }
 
 /* CreateWindow */

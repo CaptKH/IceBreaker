@@ -28,12 +28,12 @@ Matrix4& Camera::Update(int windowWidth, int windowHeight, double mouseX, double
 	vAngle += mouseSpeed * deltaTime * float(windowHeight/2 - mouseY);
 
 	direction = Vector4(cosf(vAngle) * sinf(hAngle),
-								sinf(vAngle),
-								cosf(vAngle) * cosf(hAngle), 0);
+						sinf(vAngle),
+						cosf(vAngle) * cosf(hAngle), 0);
 
 	right = Vector4(sinf(hAngle - 3.14159/2.0f),
-							0,
-							cosf(hAngle - 3.14159/2.0f), 0);
+					0,
+					cosf(hAngle - 3.14159/2.0f), 0);
 
 	up = right.CrossProduct(direction);
 	up.z = 0.0f;

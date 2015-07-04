@@ -64,7 +64,7 @@ Vector4& Matrix4::operator * (Vector4& vec) {
 	float x = (matrix[0][0] * vec.x) + (matrix[0][1] * vec.y) + (matrix[0][2] * vec.z) + (matrix[0][3] * vec.w);
 	float y = (matrix[1][0] * vec.x) + (matrix[1][1] * vec.y) + (matrix[1][2] * vec.z) + (matrix[1][3] * vec.w);
 	float z = (matrix[2][0] * vec.x) + (matrix[2][1] * vec.y) + (matrix[2][2] * vec.z) + (matrix[2][3] * vec.w);
-	float w = (matrix[3][0] * vec.x) + (matrix[3][1] * vec.y) + (matrix[3][2] * vec.z) + (matrix[3][3] * vec.w);
+	float w = 1;
 
 	return Vector4(x, y, z, w);
 }
@@ -169,13 +169,11 @@ namespace Mat4 {
 		Vector4 forward = point - eye;
 		forward.Normalize();
 
-		up.Normalize();
-
-		Vector4 side = forward.CrossProduct(up);
-		side.Normalize();
-
+		Vector4 side = up.CrossProduct(forward);
 		up = forward.CrossProduct(side);
+
 		up.Normalize();
+		side.Normalize();
 
 		Matrix4 toReturn = Matrix4(1.0f);
 		toReturn[0][0] = side.x;
@@ -188,9 +186,9 @@ namespace Mat4 {
 		toReturn[1][2] = up.z;
 		toReturn[1][3] = -up.DotProduct(eye);
 
-		toReturn[2][0] = -forward.x;
-		toReturn[2][1] = -forward.y;
-		toReturn[2][2] = -forward.z;
+		toReturn[2][0] = forward.x;
+		toReturn[2][1] = forward.y;
+		toReturn[2][2] = forward.z;
 		toReturn[2][3] = -forward.DotProduct(eye);
 
 		toReturn[3][0] = 0;
@@ -203,19 +201,20 @@ namespace Mat4 {
 
 	/* Perspective */
 	Matrix4 Perspective(float fovy, float aspect, float zNear, float zFar) {
-		fovy /= 2.0f;
-		
-		Matrix4 toReturn = Matrix4(0.0f);
-		float deltaZ = (zFar - zNear);
-		float sine = sinf(fovy);
-		float cotangent = (cosf(fovy) / sine);
+		float range = tanf(fovy / 2.0f) * zNear;
+		float sx = (2.0f * zNear) / (range * aspect + range * aspect);
+		float sy = zNear / range;
+		float sz = -(zFar + zNear) / (zFar - zNear);
+		float pz = -(2.0f * zFar * zNear) / (zFar - zNear);
 
-		toReturn[0][0] = cotangent / aspect;
-		toReturn[1][1] = cotangent;
-		toReturn[2][2] = -(zFar + zNear) / deltaZ;
-		toReturn[2][3] = (-2.0f * zFar * zNear) / deltaZ;
-		toReturn[3][2] = -1;
-		toReturn[3][3] = 0.0f;
+		Matrix4 toReturn = Matrix4(0.0f);
+
+		toReturn[0][0] = sx;
+		toReturn[1][1] = sy;
+		toReturn[2][2] = pz;
+		toReturn[2][3] = -1.0f;
+		toReturn[3][2] = pz;
+
 		return toReturn;
 	}
 }
