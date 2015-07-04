@@ -23,9 +23,9 @@ public:
 	/* GetInput */
 	/*  ** Handles processing of user input */
 	/*  **** GLFWwindow* window: Window to get input from */
-	/*  **** Camera& cam: Camera to move */
+	/*  **** Camera* cam: Camera to move */
 	/*  **** double deltaTime: Time since last frame */
-	void GetInput(GLFWwindow* window, Camera& cam, double deltaTime);
+	void GetInput(GLFWwindow* window, Camera* cam, double deltaTime);
 };
 #endif
 

@@ -14,8 +14,8 @@ Camera::Camera(Vector4& pos) {
 	vAngle = 0.0f;
 	initialFoV = 45.0f;
 
-	speed = 3.0f;
-	mouseSpeed = 0.003f;
+	speed = 2.0f;
+	mouseSpeed = 0.001f;
 }
 
 /* Destructor */
@@ -27,7 +27,7 @@ Matrix4& Camera::Update(int windowWidth, int windowHeight, double mouseX, double
 	hAngle += mouseSpeed * deltaTime * float(windowWidth/2 - mouseX);
 	vAngle += mouseSpeed * deltaTime * float(windowHeight/2 - mouseY);
 
-	Vector4 direction = Vector4(cosf(vAngle) * sinf(hAngle),
+	direction = Vector4(cosf(vAngle) * sinf(hAngle),
 								sinf(vAngle),
 								cosf(vAngle) * cosf(hAngle), 0);
 

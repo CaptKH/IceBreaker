@@ -46,7 +46,6 @@ int GLRenderer::Initialize(void) {
 	camera = new Camera(Vector4(0, 0, 0, 1));
 
 	mvp = Matrix4(1.0f);
-	projection = Mat4::Perspective(3.14159/4, 4.0f/3.0f, 0.1f, 100.0f);
 
 	meshRegistry = new MeshRegistry();
 	meshRegistry->GenerateShapes();
@@ -73,6 +72,7 @@ void GLRenderer::Update(void) {
 	previousTime = glfwGetTime();
 
 	Matrix4 view = camera->Update(windowWidth, windowHeight, mouseX, mouseY, deltaTime);
+	projection = Mat4::Perspective(3.14159/3, windowWidth/windowHeight, 0.1f, 100.0f);
 
 	mvp = projection * view;
 }

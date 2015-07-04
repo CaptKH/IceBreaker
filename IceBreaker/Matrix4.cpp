@@ -179,23 +179,23 @@ namespace Mat4 {
 
 		Matrix4 toReturn = Matrix4(1.0f);
 		toReturn[0][0] = side.x;
-		toReturn[1][0] = side.y;
-		toReturn[2][0] = side.z;
-		toReturn[3][0] = -side.DotProduct(eye);
+		toReturn[0][1] = side.y;
+		toReturn[0][2] = side.z;
+		toReturn[0][3] = -side.DotProduct(eye);
 
-		toReturn[0][1] = up.x;
+		toReturn[1][0] = up.x;
 		toReturn[1][1] = up.y;
-		toReturn[2][1] = up.z;
-		toReturn[3][1] = -up.DotProduct(eye);
+		toReturn[1][2] = up.z;
+		toReturn[1][3] = -up.DotProduct(eye);
 
-		toReturn[0][2] = -forward.x;
-		toReturn[1][2] = -forward.y;
+		toReturn[2][0] = -forward.x;
+		toReturn[2][1] = -forward.y;
 		toReturn[2][2] = -forward.z;
-		toReturn[3][2] = -forward.DotProduct(eye);
+		toReturn[2][3] = -forward.DotProduct(eye);
 
-		toReturn[0][3] = 0;
-		toReturn[1][3] = 0;
-		toReturn[2][3] = 0;
+		toReturn[3][0] = 0;
+		toReturn[3][1] = 0;
+		toReturn[3][2] = 0;
 		toReturn[3][3] = 1.0f;
 
 		return toReturn;
@@ -203,15 +203,18 @@ namespace Mat4 {
 
 	/* Perspective */
 	Matrix4 Perspective(float fovy, float aspect, float zNear, float zFar) {
-		float tanHalfFovy = tanf(fovy / 2);
-
+		fovy /= 2.0f;
+		
 		Matrix4 toReturn = Matrix4(0.0f);
+		float deltaZ = (zFar - zNear);
+		float sine = sinf(fovy);
+		float cotangent = (cosf(fovy) / sine);
 
-		toReturn[0][0] = 1 / (aspect * tanHalfFovy);
-		toReturn[1][1] = 1 / tanHalfFovy;
-		toReturn[2][2] = -(zFar + zNear) / (zFar - zNear);
-		toReturn[2][3] = -1;
-		toReturn[3][2] = -(2 * zFar * zNear) / (zFar - zNear);
+		toReturn[0][0] = cotangent / aspect;
+		toReturn[1][1] = cotangent;
+		toReturn[2][2] = -(zFar + zNear) / deltaZ;
+		toReturn[2][3] = (-2.0f * zFar * zNear) / deltaZ;
+		toReturn[3][2] = -1;
 		toReturn[3][3] = 0.0f;
 		return toReturn;
 	}

@@ -1,9 +1,14 @@
-﻿Build started 7/3/2015 10:49:45 PM.
+﻿Build started 7/4/2015 12:35:03 AM.
      1>Project "C:\Users\Aaron\Documents\IceBreaker\IceBreaker\IceBreaker.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Matrix4.cpp
-         Matrix4.cpp
-     1>c:\users\aaron\documents\icebreaker\icebreaker\matrix4.cpp(69): warning C4172: returning address of local variable or temporary
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GLRenderer.cpp
+         GLRenderer.cpp
+     1>c:\users\aaron\documents\icebreaker\icebreaker\texture.h(16): warning C4200: nonstandard extension used : zero-sized array in struct/union
+                 Cannot generate copy-ctor or copy-assignment operator when UDT contains a zero-sized array
+     1>c:\users\aaron\documents\icebreaker\icebreaker\glrenderer.cpp(75): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\aaron\documents\icebreaker\icebreaker\glrenderer.cpp(75): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\aaron\documents\icebreaker\icebreaker\glrenderer.cpp(128): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
+     1>c:\users\aaron\documents\icebreaker\icebreaker\glrenderer.cpp(156): warning C4715: 'GLRenderer::CreateWindow' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Aaron\Documents\IceBreaker\Debug\IceBreaker.exe" /INCREMENTAL /NOLOGO opengl32.lib glew32.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Aaron\Documents\IceBreaker\Debug\IceBreaker.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Aaron\Documents\IceBreaker\Debug\IceBreaker.lib" /MACHINE:X86 Debug\Camera.obj
          Debug\Cube.obj
@@ -29,4 +34,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.32
+Time Elapsed 00:00:04.54

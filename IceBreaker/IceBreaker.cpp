@@ -31,14 +31,10 @@ void IceBreaker::Initialize() {
 void IceBreaker::Run() {
 	do {
 		// Get user input
-		input->GetInput(renderer->window, *renderer->camera, renderer->deltaTime);
+		input->GetInput(renderer->window, renderer->camera, renderer->deltaTime);
 
 		// Refresh screen
 		renderer->Update();
-
-		// MVP
-		Matrix4 model = Matrix4(1.0f);
-		Matrix4 projection = Mat4::Perspective(3.14159f/4.0f, 4.0f/3.0f, 0.1f, 100.0f);
 
 		renderer->Draw(cube1, RenderMode::FILLED);
 		renderer->Draw(cube2, RenderMode::FILLED);
