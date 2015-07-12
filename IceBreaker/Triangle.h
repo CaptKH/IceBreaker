@@ -14,10 +14,11 @@ public:
 	Triangle(void);
 
 	/* Constructor */
-	/*  **** Matrix4 t: translation matrix */
-	/*  **** Matrix4 r: rotation matrix */
-	/*  **** Matrix4 s: scale matrix */
-	Triangle(Matrix4 t, Matrix4 r, Matrix4 s);
+	/*  **** Vector4 pos: Position */
+	/*  **** Vector4 vel: Velocity */
+	/*  **** Vector4 accel: Acceleration */
+	/*  **** float m: Mass */
+	Triangle(Vector4 pos, Vector4 vel, Vector4 accel, float m);
 
 	/* Destructor */
 	~Triangle(void);

@@ -2,6 +2,9 @@
 /* Creator: Kirk Hewitt       */
 /* Created: 6/15/2015         */
 
+#ifndef CUBE
+#define CUBE
+
 #include "Particle.h"
 #include "Matrix4.h"
 
@@ -15,12 +18,14 @@ public:
 	Cube(void);
 
 	/* Constructor */
-	/*  **** Matrix4 t: translation matrix */
-	/*  **** Matrix4 r: rotation matrix */
-	/*  **** Matrix4 s: scale matrix */
-	Cube(Matrix4 t, Matrix4 r, Matrix4 s);
+	/*  **** Vector4 pos: Position */
+	/*  **** Vector4 vel: Velocity */
+	/*  **** Vector4 accel: Acceleration */
+	/*  **** float m: Mass */
+	Cube(Vector4 pos, Vector4 vel, Vector4 accel, float m);
 
 	/* Destructor */
 	~Cube(void);
 };
+#endif
 

@@ -7,12 +7,16 @@
 /* Constructor */
 IceBreaker::IceBreaker(void) {
 	renderer = new GLRenderer();
+	renderer->Initialize();
+
 	input = new Input();
 	cube1 = new Cube();
-	cube2 = new Cube();
 
-	cube2->translation = Mat4::Translate(3.0f, 2.0f, 0.0f);
-	cube1->scale = Mat4::Scale(0.1f);
+	cube1->scale = Mat4::Scale(0.2f);
+
+	particles = vector<Particle*>();
+
+	particles.push_back(cube1);
 }
 
 /* Destructor */
@@ -24,20 +28,25 @@ IceBreaker::~IceBreaker(void) {
 
 /* Initialize */
 void IceBreaker::Initialize() {
-	renderer->Initialize();
 }
 
 /* Run */
 void IceBreaker::Run() {
 	do {
 		// Get user input
-		input->GetInput(renderer->window, renderer->camera, renderer->deltaTime);
+		input->GetInput(renderer->window, renderer->camera, renderer->deltaTime, particles);
 
 		// Refresh screen
 		renderer->Update();
 
-		renderer->Draw(cube1, RenderMode::FILLED);
-		renderer->Draw(cube2, RenderMode::FILLED);
+		Vector4 rand = Vec4::Random();
+
+
+		for(Particle* p : particles) {
+			p->Update(renderer->deltaTime);
+
+			renderer->Draw(p, RenderMode::FILLED);
+		}
 
 		glfwSwapBuffers(renderer->window);
 		glfwPollEvents();

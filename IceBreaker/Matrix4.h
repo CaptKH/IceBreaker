@@ -44,6 +44,11 @@ public:
 namespace Mat4 {
 	/* Translate */
 	/*  ** Translates matrix */
+	/*	**** Vector4& pos: Amount to translate */
+	Matrix4 Translate(Vector4& pos);
+
+	/* Translate */
+	/*  ** Translates matrix */
 	/*	**** float xyz: degree of translation to translate */
 	Matrix4 Translate(float x, float y, float z);
 

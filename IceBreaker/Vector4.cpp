@@ -10,6 +10,8 @@ Vector4::Vector4(float _x, float _y, float _z, float _w) {
 	y = _y;
 	z = _z;
 	w = _w;
+
+	srand(time(NULL));
 }
 
 /* Destructor */
@@ -89,4 +91,17 @@ void Vector4::operator /= (float num) {
 	x /= num;
 	y /= num;
 	z /= num;
+}
+
+namespace Vec4 {
+	/* Random */
+	Vector4 Random(void) {
+		int x = rand();
+		int y = rand();
+		int z = rand();
+
+		Vector4 toReturn = Vector4(x, y, z);
+		toReturn.Normalize();
+		return toReturn;
+	}
 }

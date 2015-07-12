@@ -16,14 +16,19 @@ GLRenderer::~GLRenderer(void) {
 
 /* Initialize */
 int GLRenderer::Initialize(void) {
-	// Init GLFW
+	#pragma region GLFW Initialization
+
 	if(!glfwInit()) {
 		std::cout << "Failed to initialize GLFW\n\n";
 	}
 	else std::cout << "GLFW initialized.\n";
 
+	#pragma endregion
+
 	// Create a window
 	CreateWindow();
+
+	#pragma region  GLEW Initialization
 
 	// Init GLEW
 	glewExperimental = true;
@@ -34,6 +39,8 @@ int GLRenderer::Initialize(void) {
 	}
 	else std::cout << "GLEW initialized.\n\n";
 
+	#pragma endregion
+
 	// Create/bind VAO
 	GenerateVAO(vertexArrayObj);
 	// Create/bind Fragmnt Buffer
@@ -42,7 +49,7 @@ int GLRenderer::Initialize(void) {
 	shaderProgramID = LoadShaderProgram();
 
 	// Create Camera
-	camera = new Camera(Vector4(0, 0, 0, 1));
+	camera = new Camera(Vector4(0, 0, -0.4f, 1));
 
 	mvp = Matrix4(1.0f);
 
@@ -51,8 +58,6 @@ int GLRenderer::Initialize(void) {
 
 	mvpUniformID = glGetUniformLocation(shaderProgramID, "MVP");
 	textureBufferObj = LoadBMP("Textures/uvtemplate.bmp");
-
-	glEnable(GL_DEPTH_TEST);
 
 	return 1;
 }
@@ -65,19 +70,16 @@ void GLRenderer::Update(void) {
 	// Get current window size
 	glfwGetWindowSize(window, &windowWidth, &windowHeight);
 
-	// Get current mouse position
-	glfwGetCursorPos(window, &mouseX, &mouseY);
-
 	// Get delta time
 	deltaTime = glfwGetTime() - previousTime;
 	previousTime = glfwGetTime();
 
-	Matrix4 view = camera->Update(windowWidth, windowHeight, mouseX, mouseY, deltaTime);
+
 	projection = Mat4::Perspective(3.14159/4, 4.0f/3.0f, 0.1f, 2.0f);
 
-	Vector4 projVec = projection * Vector4(1, 1, 1, 1);
+	Matrix4 view = Mat4::LookAt(camera->position, Vector4(0, 0, 0, 1), Vector4(0, 1, 0, 0));
 
-	mvp = projection * view;
+	mvp = view;
 }
 
 /* DrawCube */

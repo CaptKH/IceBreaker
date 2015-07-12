@@ -7,6 +7,7 @@
 
 #include <string>
 #include "Matrix4.h"
+#include "Contants.h"
 
 using namespace std;
 
@@ -14,18 +15,29 @@ class Particle
 {
 protected:
 	string meshID;
+	Vector4 forceAccum;
 
 public:
-	/* Transformation Data */
-	Matrix4 translation;
+	Vector4 position;
+	Vector4 velocity;
+	Vector4 acceleration;
+
 	Matrix4 rotation;
 	Matrix4 scale;
+
+	float mass;
+	float inverseMass;
+	float damping;
 
 	/* Default Constructor */
 	Particle(void);
 
 	/* Constructor */
-	Particle(Matrix4 t, Matrix4 r, Matrix4 s);
+	/*  **** Vector4 pos: Position */
+	/*  **** Vector4 vel: Velocity */
+	/*  **** Vector4 accel: Acceleration */
+	/*  **** float m: Mass */
+	Particle(Vector4 pos, Vector4 vel, Vector4 accel, float m);
 
 	/* Destructor */
 	~Particle(void);
@@ -34,9 +46,27 @@ public:
 	/*  ** Returns transform matrix of particle */
 	Matrix4 TransformMatrix(void);
 
+	/* Translation */
+	/*  ** Returns translation matrix */
+	Matrix4 Translation(void);
+
 	/* GetMeshID */
 	/*  Returns MeshID */
 	string GetMeshID(void);
+
+	/* Update */
+	/*  ** Updates particle postion & state */
+	virtual void Update(double deltaTime);
+
+	/* Integrate */
+	/*  ** Updates particles position and velocity based off of external forces */
+	/*  **** float duration: Amount of time to integrate over */
+	virtual void Integrate(float duration);
+
+	/* AddForce */
+	/*  ** Adds force to the aggregate of forces acting on the particle */
+	/*  **** Vector4 force: Force to be added */
+	void AddForce(Vector4 force);
 };
 #endif
 

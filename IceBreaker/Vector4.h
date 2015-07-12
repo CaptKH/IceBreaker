@@ -5,6 +5,8 @@
 #ifndef VECTOR4
 #define VECTOR4
 
+#include <time.h>
+#include <random>
 #include <string>
 
 using namespace std;
@@ -66,4 +68,11 @@ public:
 	void operator *= (float num);
 	void operator /= (float num);
 };
+
+namespace Vec4 {
+
+	/* Random */
+	/*  ** Returns normalized vector pointing in random direction */
+	Vector4 Random(void);
+}
 #endif

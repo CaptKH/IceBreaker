@@ -27,7 +27,8 @@ class IceBreaker
 	GLRenderer* renderer;
 	Input* input;
 	Cube* cube1;
-	Cube* cube2;
+
+	vector<Particle*> particles;
 
 public:
 	/* Constructor */

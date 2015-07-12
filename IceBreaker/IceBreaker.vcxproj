@@ -74,6 +74,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="Firework.cpp" />
+    <ClCompile Include="FireworkGenerator.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GLRenderer.cpp" />
     <ClCompile Include="GLShaderData.cpp" />
@@ -93,8 +95,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Contants.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="FileIO.h" />
+    <ClInclude Include="Firework.h" />
+    <ClInclude Include="FireworkGenerator.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GLRenderer.h" />
     <ClInclude Include="GLShaderData.h" />

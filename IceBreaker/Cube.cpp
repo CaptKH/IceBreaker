@@ -6,11 +6,13 @@
 /* Default Constructor */
 Cube::Cube(void) : Particle() {
 	meshID = "Cube";
+
+	scale = Mat4::Scale(0.3f);
 }
 
 /* Constructor */
-Cube::Cube(Matrix4 t, Matrix4 r, Matrix4 s) 
-	: Particle(t, r, s) {
+Cube::Cube(Vector4 pos, Vector4 vel, Vector4 accel, float m) 
+	: Particle(pos, vel, accel, m) {
 
 	meshID = "Cube";
 }

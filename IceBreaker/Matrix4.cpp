@@ -86,6 +86,17 @@ Matrix4 Matrix4::operator * (Matrix4& mat) {
 
 namespace Mat4 {
 	/* Translate */
+	Matrix4 Translate(Vector4& pos) {
+		Matrix4 mat = Matrix4(1.0f);
+
+		mat[0][3] += pos.x;
+		mat[1][3] += pos.y;
+		mat[2][3] += pos.z;
+
+		return mat;
+	}
+
+	/* Translate */
 	Matrix4 Translate(float x, float y, float z) {
 		Matrix4 mat = Matrix4(1.0f);
 
@@ -144,7 +155,7 @@ namespace Mat4 {
 
 	/* Scale */
 	Matrix4 Scale(float s) {
-		Matrix4 mat = Matrix4(0.0f);
+		Matrix4 mat = Matrix4(1.0f);
 
 		mat[0][0] = s;
 		mat[1][1] = s;
@@ -155,7 +166,7 @@ namespace Mat4 {
 
 	/* Scale */
 	Matrix4 Scale(float x, float y, float z) {
-		Matrix4 mat = Matrix4(0.0f);
+		Matrix4 mat = Matrix4(1.0f);
 
 		mat[0][0] = x;
 		mat[1][1] = y;

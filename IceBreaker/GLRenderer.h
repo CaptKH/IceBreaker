@@ -50,8 +50,6 @@ public:
 	int windowWidth;
 	int windowHeight;
 
-	double mouseX; // Mouse x-coordinate in window
-	double mouseY; // Mouse y-coordinate in window
 	double deltaTime; // Time since last frame
 
 	/* Constructor */

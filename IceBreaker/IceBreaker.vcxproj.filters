@@ -19,35 +19,47 @@
     <Filter Include="Source Files\Math\Vector">
       <UniqueIdentifier>{1230115d-9a26-49f2-8ec6-022f883ab308}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shapes">
-      <UniqueIdentifier>{7db2471e-dc86-447f-a45d-8a09b625057d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ShaderData">
-      <UniqueIdentifier>{cb5aa7cc-69e1-497e-a537-2086d777c060}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Math">
       <UniqueIdentifier>{8f042d51-dab2-4c28-8fac-77bfee6c4473}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Math\Vector">
       <UniqueIdentifier>{bc6767e4-b748-46fa-8ca2-5dc1839aec37}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Shapes">
-      <UniqueIdentifier>{44d7ee8a-d96c-44e5-ba1c-a9d42a49e7a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Unfiled">
       <UniqueIdentifier>{fd2f62da-6d41-42a3-b97d-b4ba1fa4a404}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Registries">
-      <UniqueIdentifier>{5b1dd7c5-59b1-4872-9a51-a5b7c73497dd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Unfiled">
       <UniqueIdentifier>{8b8197a2-9787-4224-b87b-5020f9a7c43b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ShaderData">
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{7bb397ca-f1e5-496b-a24b-86b593150f2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Registries">
+      <UniqueIdentifier>{bc077ceb-9f3b-485a-aa49-30eaea64fec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\ShaderData">
       <UniqueIdentifier>{c264145b-f55a-482b-8f09-98e730266be4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Registries">
-      <UniqueIdentifier>{bc077ceb-9f3b-485a-aa49-30eaea64fec6}</UniqueIdentifier>
+    <Filter Include="Header Files\Graphics\Shapes">
+      <UniqueIdentifier>{44d7ee8a-d96c-44e5-ba1c-a9d42a49e7a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{429ff433-bc3e-4ca2-9cc2-9a8db7231953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\ShaderData">
+      <UniqueIdentifier>{cb5aa7cc-69e1-497e-a537-2086d777c060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Registries">
+      <UniqueIdentifier>{5b1dd7c5-59b1-4872-9a51-a5b7c73497dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Shapes">
+      <UniqueIdentifier>{7db2471e-dc86-447f-a45d-8a09b625057d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{c3c1e541-7e1b-45b7-8695-0d7143894e17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{cb55273e-e8f0-419c-ab5d-fa00d0660c71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -61,28 +73,28 @@
       <Filter>Source Files\Math\Vector</Filter>
     </ClCompile>
     <ClCompile Include="MeshRegistry.cpp">
-      <Filter>Source Files\Registries</Filter>
+      <Filter>Source Files\Graphics\Registries</Filter>
     </ClCompile>
     <ClCompile Include="Matrix4.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Triangle.cpp">
-      <Filter>Source Files\Shapes</Filter>
+      <Filter>Source Files\Graphics\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Source Files\Shapes</Filter>
+      <Filter>Source Files\Graphics\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="TextureRegistry.cpp">
-      <Filter>Source Files\Registries</Filter>
+      <Filter>Source Files\Graphics\Registries</Filter>
     </ClCompile>
     <ClCompile Include="GLShaderData.cpp">
-      <Filter>Source Files\ShaderData</Filter>
+      <Filter>Source Files\Graphics\ShaderData</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\ShaderData</Filter>
+      <Filter>Source Files\Graphics\ShaderData</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\ShaderData</Filter>
+      <Filter>Source Files\Graphics\ShaderData</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Unfiled</Filter>
@@ -91,9 +103,6 @@
       <Filter>Source Files\Unfiled</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Unfiled</Filter>
-    </ClCompile>
-    <ClCompile Include="GLRenderer.cpp">
       <Filter>Source Files\Unfiled</Filter>
     </ClCompile>
     <ClCompile Include="IceBreaker.cpp">
@@ -105,8 +114,17 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Unfiled</Filter>
     </ClCompile>
+    <ClCompile Include="GLRenderer.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
     <ClCompile Include="Particle.cpp">
-      <Filter>Source Files\Unfiled</Filter>
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Firework.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="FireworkGenerator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,34 +138,28 @@
       <Filter>Header Files\Math\Vector</Filter>
     </ClInclude>
     <ClInclude Include="MeshRegistry.h">
-      <Filter>Header Files\Registries</Filter>
+      <Filter>Header Files\Graphics\Registries</Filter>
     </ClInclude>
     <ClInclude Include="Matrix4.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
     <ClInclude Include="Triangle.h">
-      <Filter>Header Files\Shapes</Filter>
+      <Filter>Header Files\Graphics\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Header Files\Shapes</Filter>
+      <Filter>Header Files\Graphics\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="TextureRegistry.h">
-      <Filter>Header Files\Registries</Filter>
+      <Filter>Header Files\Graphics\Registries</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Header Files\ShaderData</Filter>
+      <Filter>Header Files\Graphics\ShaderData</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Header Files\ShaderData</Filter>
+      <Filter>Header Files\Graphics\ShaderData</Filter>
     </ClInclude>
     <ClInclude Include="GLShaderData.h">
-      <Filter>Header Files\ShaderData</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>Header Files\Unfiled</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Unfiled</Filter>
+      <Filter>Header Files\Graphics\ShaderData</Filter>
     </ClInclude>
     <ClInclude Include="FileIO.h">
       <Filter>Header Files\Unfiled</Filter>
@@ -155,14 +167,29 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files\Unfiled</Filter>
     </ClInclude>
-    <ClInclude Include="GLRenderer.h">
-      <Filter>Header Files\Unfiled</Filter>
-    </ClInclude>
     <ClInclude Include="IceBreaker.h">
       <Filter>Header Files\Unfiled</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\Unfiled</Filter>
+    </ClInclude>
+    <ClInclude Include="Contants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLRenderer.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Firework.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="FireworkGenerator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

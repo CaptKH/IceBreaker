@@ -7,11 +7,21 @@
 
 #include <GLFW\glfw3.h>
 #include <iostream>
+#include <vector>
+#include "Particle.h"
 #include "Camera.h"
+#include "Firework.h"
 
 class Input
 {
 public:
+
+	double mouseX;
+	double mouseY;
+	int windowW;
+	int windowH;
+
+	bool canClick;
 
 	/* Constructor */
 	/*	** Camera* cam: character-controlled camera used in scene */
@@ -25,7 +35,7 @@ public:
 	/*  **** GLFWwindow* window: Window to get input from */
 	/*  **** Camera* cam: Camera to move */
 	/*  **** double deltaTime: Time since last frame */
-	void GetInput(GLFWwindow* window, Camera* cam, double deltaTime);
+	void GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<Particle*>& particles);
 };
 #endif
 

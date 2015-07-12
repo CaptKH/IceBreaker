@@ -10,8 +10,8 @@ Triangle::Triangle(void) : Particle() {
 }
 
 /* Constructor */
-Triangle::Triangle(Matrix4 t, Matrix4 r, Matrix4 s) 
-	: Particle(t, r, s) {
+Triangle::Triangle(Vector4 pos, Vector4 vel, Vector4 accel, float m) 
+	: Particle(pos, vel, accel, m) {
 
 	meshID = "Triangle";
 }
