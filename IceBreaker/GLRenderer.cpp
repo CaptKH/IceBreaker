@@ -26,7 +26,7 @@ int GLRenderer::Initialize(void) {
 	#pragma endregion
 
 	// Create a window
-	CreateWindow();
+	CreateWindow(1920, 1080);
 
 	#pragma region  GLEW Initialization
 
@@ -83,8 +83,8 @@ void GLRenderer::Update(void) {
 }
 
 /* DrawCube */
-void GLRenderer::Draw(Particle* p, RenderMode r) {
-	Mesh* pMesh = meshRegistry->GetMesh(p->GetMeshID());
+void GLRenderer::Draw(Particle p, RenderMode r) {
+	Mesh* pMesh = meshRegistry->GetMesh(p.GetMeshID());
 
 	// Vertex shader pointer
 	glEnableVertexAttribArray(0);
@@ -110,7 +110,7 @@ void GLRenderer::Draw(Particle* p, RenderMode r) {
 		(void*)0
 	);
 
-	Matrix4 pMVP = mvp * p->TransformMatrix();
+	Matrix4 pMVP = mvp * p.TransformMatrix();
 
 	// GL_TRUE GODDAM IT!! 6/30/2015
 	glUniformMatrix4fv(mvpUniformID, 1, GL_TRUE, &pMVP[0][0]);

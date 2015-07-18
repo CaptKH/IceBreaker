@@ -6,7 +6,7 @@
 
 /* Default Constructor */
 Particle::Particle(void) {
-	meshID = "Patricle";
+	meshID = "Cube";
 
 	rotation = Matrix4(1.0f);
 	scale = Matrix4(1.0f);
@@ -14,6 +14,9 @@ Particle::Particle(void) {
 	position = Vector4();
 	velocity = Vector4(0, 0, 0);
 	acceleration = Vector4();
+
+	minVelocity = Vector4();
+	maxVelocity = Vector4();
 
 	mass = 0;
 	inverseMass = 0;
@@ -23,7 +26,7 @@ Particle::Particle(void) {
 
 /* Constructor */
 Particle::Particle(Vector4 pos, Vector4 vel, Vector4 accel, float m) {
-	meshID = "Particle";
+	meshID = "Cube";
 
 	rotation = Matrix4(1.0f);
 	scale = Matrix4(1.0f);
@@ -35,7 +38,7 @@ Particle::Particle(Vector4 pos, Vector4 vel, Vector4 accel, float m) {
 	mass = m;
 	inverseMass = 1/m;
 
-	damping = 0.98f;
+	damping = 0.99f;
 }
 
 
@@ -52,7 +55,7 @@ Matrix4 Particle::TransformMatrix(void) {
 
 /* Translation */
 Matrix4 Particle::Translation(void) {
-	Matrix4 translation = Mat4::Translate(position.x, position.y, position.z);
+	Matrix4 translation = Mat4::Translate(position);
 	return translation;
 }
 
@@ -69,10 +72,24 @@ void Particle::Update(double deltaTime) {
 /* Integrate */
 void Particle::Integrate(float duration) {
 	// p = (v*t) + (1/2 * a * t^2)
-	position = velocity * duration + (acceleration * duration * duration * 0.5f);
+	position += velocity * duration + (acceleration * duration * duration * 0.5f);
+
+	CheckVelocity();
 
 	// Impose damping 
 	velocity *= damping;
+}
+
+/* CheckVelocity */
+void Particle::CheckVelocity(void) {
+	if(velocity.x < minVelocity.x) velocity.x = minVelocity.x;
+	if(velocity.x > maxVelocity.x) velocity.x = maxVelocity.x;
+
+	if(velocity.y < minVelocity.y) velocity.y = minVelocity.y;
+	if(velocity.y > maxVelocity.y) velocity.y = maxVelocity.y;
+
+	if(velocity.z < minVelocity.z) velocity.z = minVelocity.z;
+	if(velocity.z > maxVelocity.z) velocity.z = maxVelocity.z;
 }
 
 /* AddForce */

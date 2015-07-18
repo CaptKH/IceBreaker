@@ -70,13 +70,13 @@ public:
 	/*  Draw a triangle to OpenGL screen */
 	/*  Particle p: Particle to draw */
 	/*	RenderMode r: Whether to render in wireframe, colored, etc. */
-	void Draw(Particle* p, RenderMode r);
+	void Draw(Particle p, RenderMode r);
 
 	/* Draw */
 	/*  Draw a triangle to OpenGL screen */
 	/*  Particle p: Particle to draw */
 	/*	Texture* t: whether to render in wireframe, filled, etc. */
-	void Draw(Particle* p, Texture* t);
+	void Draw(Particle p, Texture* t);
 private:
 	double previousTime;
 

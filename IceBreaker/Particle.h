@@ -22,6 +22,9 @@ public:
 	Vector4 velocity;
 	Vector4 acceleration;
 
+	Vector4 minVelocity;
+	Vector4 maxVelocity;
+
 	Matrix4 rotation;
 	Matrix4 scale;
 
@@ -67,6 +70,12 @@ public:
 	/*  ** Adds force to the aggregate of forces acting on the particle */
 	/*  **** Vector4 force: Force to be added */
 	void AddForce(Vector4 force);
+
+private:
+	/* CheckVelocity */
+	/*  ** Checks to see if current velocity is less than the minimum, */
+	/*  ** or greater than the maximum, and adjusts accordingly */
+	void CheckVelocity(void);
 };
 #endif
 

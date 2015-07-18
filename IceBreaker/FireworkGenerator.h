@@ -12,11 +12,13 @@
 
 class FireworkGenerator
 {
+public:
 	vector<Firework*> fireworks;
 
-public:
 	/* Constructor */
-	FireworkGenerator(void);
+	/*  **** float xPos: Initial x position */
+	/*  **** float yPos: Initial y position */
+	FireworkGenerator(float xPos, float yPos);
 
 	/* Destructor */
 	~FireworkGenerator(void);

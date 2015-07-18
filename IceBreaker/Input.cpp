@@ -19,7 +19,7 @@ Input::~Input(void) {
 }
 
 /* GetInput */
-void Input::GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<Particle*>& particles) {
+void Input::GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<FireworkGenerator*>& particles) {
 	// Get mouse position
 	glfwGetCursorPos(window, &mouseX, &mouseY);
 
@@ -55,8 +55,7 @@ void Input::GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<P
 		float xPos = (mouseX - windowW/2)/(windowW/2);
 		float yPos = (mouseY - windowH/2)/(windowH/2);
 
-		Firework* toAdd = new Firework();
-		toAdd->position = Vector4(xPos, -yPos, 0);
+		FireworkGenerator* toAdd = new FireworkGenerator(xPos, -yPos);
 		particles.push_back(toAdd);
 		canClick = false;
 	}

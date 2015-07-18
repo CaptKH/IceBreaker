@@ -10,8 +10,6 @@ Vector4::Vector4(float _x, float _y, float _z, float _w) {
 	y = _y;
 	z = _z;
 	w = _w;
-
-	srand(time(NULL));
 }
 
 /* Destructor */
@@ -100,7 +98,7 @@ namespace Vec4 {
 		int y = rand();
 		int z = rand();
 
-		Vector4 toReturn = Vector4(x, y, z);
+ 		Vector4 toReturn = Vector4(x, y, z);
 		toReturn.Normalize();
 		return toReturn;
 	}

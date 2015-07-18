@@ -12,11 +12,9 @@ IceBreaker::IceBreaker(void) {
 	input = new Input();
 	cube1 = new Cube();
 
-	cube1->scale = Mat4::Scale(0.2f);
+	fwGenerators = vector<FireworkGenerator*>();
 
-	particles = vector<Particle*>();
-
-	particles.push_back(cube1);
+	srand(time(NULL));
 }
 
 /* Destructor */
@@ -34,18 +32,17 @@ void IceBreaker::Initialize() {
 void IceBreaker::Run() {
 	do {
 		// Get user input
-		input->GetInput(renderer->window, renderer->camera, renderer->deltaTime, particles);
+		input->GetInput(renderer->window, renderer->camera, renderer->deltaTime, fwGenerators);
 
 		// Refresh screen
 		renderer->Update();
 
-		Vector4 rand = Vec4::Random();
-
-
-		for(Particle* p : particles) {
-			p->Update(renderer->deltaTime);
-
-			renderer->Draw(p, RenderMode::FILLED);
+		for(FireworkGenerator* fwg : fwGenerators) {
+			fwg->Update(renderer->deltaTime);
+			
+			for(Firework* fw : fwg->fireworks) {
+				renderer->Draw(*fw, RenderMode::FILLED);
+			}
 		}
 
 		glfwSwapBuffers(renderer->window);

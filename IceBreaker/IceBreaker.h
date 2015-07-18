@@ -17,6 +17,7 @@
 #include "MeshRegistry.h"
 #include "Camera.h"
 #include "Input.h"
+#include "FireworkGenerator.h"
 #include "GameObject.h"
 #include "Cube.h"
 
@@ -28,7 +29,7 @@ class IceBreaker
 	Input* input;
 	Cube* cube1;
 
-	vector<Particle*> particles;
+	vector<FireworkGenerator*> fwGenerators;
 
 public:
 	/* Constructor */

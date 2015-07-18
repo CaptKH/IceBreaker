@@ -7,6 +7,8 @@
 
 #include "Particle.h"
 
+enum FireworkType { INITIAL = 3, SECONDARY = 2, EXPLOSION = 1 };
+
 /* Firework */
 /*  ** Contains functionality for firework particle effects */
 class Firework : public Particle
