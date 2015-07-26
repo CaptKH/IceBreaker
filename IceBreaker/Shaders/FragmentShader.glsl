@@ -1,8 +1,10 @@
 #version 330 core
 
 in vec3 fragmentColor;
-out vec3 color;
+
+uniform float alpha;
+
 
 void main() {
-	color = fragmentColor;
+	 gl_FragColor = vec4(fragmentColor, alpha);
 }

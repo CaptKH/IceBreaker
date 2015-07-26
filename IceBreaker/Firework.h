@@ -16,6 +16,7 @@ class Firework : public Particle
 public:
 	unsigned type; // Type of firework to draw
 	float fuseTime;
+	float maxYSpeed;
 
 	/* Constructor */
 	Firework(void);
@@ -25,7 +26,8 @@ public:
 	/*  **** Vector4 accel: Acceleration */
 	/*  **** float m: Mass */
 	/*  **** float fuse: time of fuse */
-	Firework(Vector4 pos, Vector4 vel, Vector4 accel, float m, float fuse);
+	/*  **** float t: Firework type */		
+	Firework(Vector4 pos, Vector4 vel, Vector4 accel, float m, float fuse, float t);
 
 	/* Destructor */
 	~Firework(void);
@@ -33,7 +35,7 @@ public:
 	/* Update */
 	/*  ** Updates particle, returns true if still active, false if its fuseTime has run out */
 	/*  **** float deltaTime: Time since last frame */
-	bool Update(float deltaTime);
+	bool Update(float deltaTime, Vector3 gravity = NULL);
 };
 #endif
 

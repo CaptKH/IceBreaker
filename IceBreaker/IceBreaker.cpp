@@ -21,7 +21,7 @@ IceBreaker::IceBreaker(void) {
 IceBreaker::~IceBreaker(void) {
 	if(renderer != nullptr)
 		delete renderer;
-		renderer = nullptr;
+	renderer = nullptr;
 }
 
 /* Initialize */
@@ -31,23 +31,35 @@ void IceBreaker::Initialize() {
 /* Run */
 void IceBreaker::Run() {
 	do {
-		// Get user input
-		input->GetInput(renderer->window, renderer->camera, renderer->deltaTime, fwGenerators);
-
 		// Refresh screen
 		renderer->Update();
 
+		// Get user input
+		input->GetInput(renderer->window, renderer->camera, renderer->deltaTime, fwGenerators);
+
+		vector<FireworkGenerator*> stillActive = vector<FireworkGenerator*>();
+
 		for(FireworkGenerator* fwg : fwGenerators) {
-			fwg->Update(renderer->deltaTime);
-			
-			for(Firework* fw : fwg->fireworks) {
-				renderer->Draw(*fw, RenderMode::FILLED);
+			if(!fwg->Update(renderer->deltaTime)) {
+				delete fwg;
+			}
+			else {
+				stillActive.push_back(fwg);
+
+				for(Firework* fw : fwg->fireworks) {
+					renderer->Draw(*fw, RenderMode::FILLED);
+				}
 			}
 		}
+
+		fwGenerators = stillActive;
 
 		glfwSwapBuffers(renderer->window);
 		glfwPollEvents();
 	}
 	while(glfwGetKey(renderer->window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
-			glfwWindowShouldClose(renderer->window) == 0);
+		glfwWindowShouldClose(renderer->window) == 0);
+
+	// End all GLFW functionality
+	glfwTerminate();
 }

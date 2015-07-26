@@ -11,9 +11,9 @@
 #include <GLFW\glfw3.h>
 #endif
 
-
 #include <vector>
 #include <iostream>
+#include "Constants.h"
 #include "Matrix4.h"
 #include "Camera.h"
 #include "FileIO.h"
@@ -34,7 +34,7 @@ class GLRenderer
 	// Shader variables
 	GLuint shaderProgramID;
 	GLuint mvpUniformID;
-	GLuint colorID;
+	GLuint alphaUniformID;
 
 	// Model-View-Projection matrix
 	Matrix4 mvp;

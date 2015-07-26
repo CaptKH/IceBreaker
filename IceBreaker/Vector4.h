@@ -8,6 +8,7 @@
 #include <time.h>
 #include <random>
 #include <string>
+#include "Vector3.h"
 
 using namespace std;
 
@@ -30,6 +31,10 @@ public:
 
 	/* Destructor */
 	~Vector4(void);
+
+	/* Clear */
+	/*  ** Resets Vector4 to (0, 0, 0, w) */
+	void Clear(void);
 
 	/* Magnitude */
 	/*  ** Returns the magnitude of the vector */
@@ -70,9 +75,17 @@ public:
 };
 
 namespace Vec4 {
+	/* Vec3to4 */
+	/*  ** Returns Vector4 representation of Vector3 */
+	Vector4 Vec3to4(Vector3 vec3, int w = 0);
 
 	/* Random */
 	/*  ** Returns normalized vector pointing in random direction */
 	Vector4 Random(void);
+
+	/* Normalize */
+	/*  ** Returns vector representing normalization of specified vector */
+	/*  **** Vector4 toNorm: Vector4 to find normal of */
+	Vector4 Normalize(Vector4 toNorm);
 }
 #endif

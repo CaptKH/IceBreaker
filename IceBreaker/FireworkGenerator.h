@@ -9,11 +9,13 @@
 #include <random>
 #include <time.h>
 #include "Firework.h"
+#include "Constants.h"
 
 class FireworkGenerator
 {
 public:
 	vector<Firework*> fireworks;
+	vector<Firework*> nextFrame;
 
 	/* Constructor */
 	/*  **** float xPos: Initial x position */

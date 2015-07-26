@@ -7,7 +7,7 @@
 
 #include <string>
 #include "Matrix4.h"
-#include "Contants.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -31,6 +31,7 @@ public:
 	float mass;
 	float inverseMass;
 	float damping;
+	float opacity;
 
 	/* Default Constructor */
 	Particle(void);
@@ -59,7 +60,9 @@ public:
 
 	/* Update */
 	/*  ** Updates particle postion & state */
-	virtual void Update(double deltaTime);
+	/*  **** double deltaTime: Time since last frame */
+	/*  **** Vector3 gravity: Which direction is gravity pointing?  Defaults to null */
+	virtual void  Update(double deltaTime, Vector3 gravity = NULL);
 
 	/* Integrate */
 	/*  ** Updates particles position and velocity based off of external forces */

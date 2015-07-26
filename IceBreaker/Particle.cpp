@@ -20,8 +20,8 @@ Particle::Particle(void) {
 
 	mass = 0;
 	inverseMass = 0;
-
 	damping = 0.98f;
+	opacity = 1.0f;
 }
 
 /* Constructor */
@@ -37,8 +37,8 @@ Particle::Particle(Vector4 pos, Vector4 vel, Vector4 accel, float m) {
 
 	mass = m;
 	inverseMass = 1/m;
-
-	damping = 0.99f;
+	damping = 0.98f;
+	opacity = 1.0f;
 }
 
 
@@ -65,19 +65,30 @@ string Particle::GetMeshID(void) {
 }
 
 /* Update */
-void Particle::Update(double deltaTime) {
+void Particle::Update(double deltaTime, Vector3 gravity) {
+	// Add gravity to environment, if there is any
+	AddForce(Vec4::Vec3to4(gravity, 1));
+
+	// Move everything
 	Integrate(deltaTime);
+
+	// Clear force accumulator for next update
+	forceAccum.Clear();
 }
 
 /* Integrate */
 void Particle::Integrate(float duration) {
-	// p = (v*t) + (1/2 * a * t^2)
-	position += velocity * duration + (acceleration * duration * duration * 0.5f);
+	// Add forces to acceleration
+	Vector4 currentAccel = acceleration;
+	currentAccel = forceAccum * mass;
+
+	// v += a*t
+	velocity += currentAccel * duration;
+
+	// p += v*t
+	position += velocity * duration;
 
 	CheckVelocity();
-
-	// Impose damping 
-	velocity *= damping;
 }
 
 /* CheckVelocity */

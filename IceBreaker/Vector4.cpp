@@ -16,6 +16,13 @@ Vector4::Vector4(float _x, float _y, float _z, float _w) {
 Vector4::~Vector4(void) {
 }
 
+/* Clear */
+void Vector4::Clear(void) {
+	x = 0;
+	y = 0;
+	z = 0;
+}
+
 /* Magnitude */
 float Vector4::Magnitude(void) {
 	return sqrt((x * x) + (y * y) + (z * z));
@@ -92,14 +99,26 @@ void Vector4::operator /= (float num) {
 }
 
 namespace Vec4 {
+	/* Vec3to4 */
+	Vector4 Vec3to4(Vector3 vec3, int w) {
+		return Vector4(vec3.x, vec3.y, vec3.z, w);
+	}
+
 	/* Random */
 	Vector4 Random(void) {
-		int x = rand();
-		int y = rand();
-		int z = rand();
+		int x = rand() - rand();
+		int y = rand() - rand();
+		int z = rand() - rand();
 
- 		Vector4 toReturn = Vector4(x, y, z);
+		// z = 0 for now until graphics issues sorted out
+ 		Vector4 toReturn = Vector4(x, y, 0);
 		toReturn.Normalize();
 		return toReturn;
+	}
+
+	/* Normalize */
+	Vector4 Normalize(Vector4 toNorm) {
+		toNorm.Normalize();
+		return toNorm;
 	}
 }

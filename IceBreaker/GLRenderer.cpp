@@ -57,6 +57,7 @@ int GLRenderer::Initialize(void) {
 	meshRegistry->GenerateShapes();
 
 	mvpUniformID = glGetUniformLocation(shaderProgramID, "MVP");
+	alphaUniformID = glGetUniformLocation(shaderProgramID, "alpha");
 	textureBufferObj = LoadBMP("Textures/uvtemplate.bmp");
 
 	return 1;
@@ -70,12 +71,13 @@ void GLRenderer::Update(void) {
 	// Get current window size
 	glfwGetWindowSize(window, &windowWidth, &windowHeight);
 
+	float time = glfwGetTime();
+
 	// Get delta time
-	deltaTime = glfwGetTime() - previousTime;
-	previousTime = glfwGetTime();
+	deltaTime = time - previousTime;
+	previousTime = time;
 
-
-	projection = Mat4::Perspective(3.14159/4, 4.0f/3.0f, 0.1f, 2.0f);
+	projection = Mat4::Perspective(PI/4, 4.0f/3.0f, 0.1f, 2.0f);
 
 	Matrix4 view = Mat4::LookAt(camera->position, Vector4(0, 0, 0, 1), Vector4(0, 1, 0, 0));
 
@@ -114,6 +116,7 @@ void GLRenderer::Draw(Particle p, RenderMode r) {
 
 	// GL_TRUE GODDAM IT!! 6/30/2015
 	glUniformMatrix4fv(mvpUniformID, 1, GL_TRUE, &pMVP[0][0]);
+	glUniform1f(alphaUniformID, p.opacity);
 	glUseProgram(shaderProgramID);
 
 	// Render in wireframe
@@ -131,11 +134,13 @@ void GLRenderer::Draw(Particle p, RenderMode r) {
 /* DrawRefresh */
 void GLRenderer::DrawRefresh(void) {
 	glDepthFunc(GL_LESS);
-	glClearColor(0.235294, 0.701961, 0.443137, 1.0);
+	glClearColor(0, 0, 0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_CULL_FACE);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 /* CreateWindow */

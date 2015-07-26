@@ -124,7 +124,7 @@
       <Filter>Source Files\Unfiled</Filter>
     </ClCompile>
     <ClCompile Include="Firework.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,7 +188,7 @@
     <ClInclude Include="FireworkGenerator.h">
       <Filter>Header Files\Unfiled</Filter>
     </ClInclude>
-    <ClInclude Include="Contants.h">
+    <ClInclude Include="Constants.h">
       <Filter>Header Files\Unfiled</Filter>
     </ClInclude>
   </ItemGroup>

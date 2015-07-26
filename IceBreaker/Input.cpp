@@ -57,6 +57,8 @@ void Input::GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<F
 
 		FireworkGenerator* toAdd = new FireworkGenerator(xPos, -yPos);
 		particles.push_back(toAdd);
+
+		// Comment this out for spark particle effects instead!
 		canClick = false;
 	}
 
