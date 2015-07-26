@@ -10,7 +10,8 @@
 #include <vector>
 #include "Particle.h"
 #include "Camera.h"
-#include "FireworkGenerator.h"
+#include "ForceManager.h"
+#include "FireworkManager.h"
 
 class Input
 {
@@ -35,7 +36,7 @@ public:
 	/*  **** GLFWwindow* window: Window to get input from */
 	/*  **** Camera* cam: Camera to move */
 	/*  **** double deltaTime: Time since last frame */
-	void GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<FireworkGenerator*>& particles);
+	void GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<FireworkGenerator*>& particles, ForceManager* fManager);
 };
 #endif
 

@@ -17,9 +17,10 @@
 #include "MeshRegistry.h"
 #include "Camera.h"
 #include "Input.h"
-#include "FireworkGenerator.h"
 #include "GameObject.h"
 #include "Cube.h"
+#include "ForceManager.h"
+#include "FireworkManager.h"
 
 using namespace std;
 
@@ -29,7 +30,8 @@ class IceBreaker
 	Input* input;
 	Cube* cube1;
 
-	vector<FireworkGenerator*> fwGenerators;
+	ForceManager* fManager;
+	FireworkManager* fwManager;
 
 public:
 	/* Constructor */
@@ -45,5 +47,9 @@ public:
 	/* Run */
 	/*  Updates gameobjects currently active in engine and draws them to screen */
 	void Run();
+
+	/* DrawFireworks */
+	/*  ** Draws fireworks to screen */
+	void DrawFireworks(void);
 };
 #endif

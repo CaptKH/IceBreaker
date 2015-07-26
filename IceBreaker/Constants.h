@@ -1,3 +1,7 @@
+/* Ice Breaker Physics Engine */
+/* Creator: Kirk Hewitt       */
+/* Created: 6/15/2015         */
+
 #ifndef CONSTANTS
 #define CONSTANTS
 

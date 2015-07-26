@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\Math">
       <UniqueIdentifier>{e61a9ba1-5df4-4c24-b4e4-a18c14e62b26}</UniqueIdentifier>
     </Filter>
@@ -61,6 +57,22 @@
     <Filter Include="Source Files\Physics">
       <UniqueIdentifier>{cb55273e-e8f0-419c-ab5d-fa00d0660c71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Fireworks">
+      <UniqueIdentifier>{c85d29e5-15cd-47ef-ad0e-211972d18198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Fireworks">
+      <UniqueIdentifier>{b54170e5-168b-4a00-9a5b-fa490201395a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics\Forces">
+      <UniqueIdentifier>{ce9090d2-4fcf-44d0-b5c1-a5810407ed72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics\Forces">
+      <UniqueIdentifier>{b40049db-c743-4ec8-b6c1-b44e931cd263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vector2.cpp">
@@ -96,9 +108,6 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Graphics\ShaderData</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Unfiled</Filter>
-    </ClCompile>
     <ClCompile Include="FileIO.cpp">
       <Filter>Source Files\Unfiled</Filter>
     </ClCompile>
@@ -117,14 +126,32 @@
     <ClCompile Include="GLRenderer.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Firework.cpp">
+      <Filter>Source Files\Fireworks</Filter>
+    </ClCompile>
+    <ClCompile Include="FireworkManager.cpp">
+      <Filter>Source Files\Fireworks</Filter>
+    </ClCompile>
+    <ClCompile Include="FireworkGenerator.cpp">
+      <Filter>Source Files\Fireworks</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceManager.cpp">
+      <Filter>Source Files\Physics\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityGenerator.cpp">
+      <Filter>Source Files\Physics\Forces</Filter>
+    </ClCompile>
     <ClCompile Include="Particle.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="FireworkGenerator.cpp">
-      <Filter>Source Files\Unfiled</Filter>
+    <ClCompile Include="DragGenerator.cpp">
+      <Filter>Source Files\Physics\Forces</Filter>
     </ClCompile>
-    <ClCompile Include="Firework.cpp">
-      <Filter>Source Files\Physics</Filter>
+    <ClCompile Include="SpringGenerator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,14 +209,32 @@
     <ClInclude Include="Particle.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="Firework.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="FireworkGenerator.h">
-      <Filter>Header Files\Unfiled</Filter>
-    </ClInclude>
     <ClInclude Include="Constants.h">
       <Filter>Header Files\Unfiled</Filter>
+    </ClInclude>
+    <ClInclude Include="Firework.h">
+      <Filter>Header Files\Fireworks</Filter>
+    </ClInclude>
+    <ClInclude Include="FireworkGenerator.h">
+      <Filter>Header Files\Fireworks</Filter>
+    </ClInclude>
+    <ClInclude Include="FireworkManager.h">
+      <Filter>Header Files\Fireworks</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceGenerator.h">
+      <Filter>Header Files\Physics\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceManager.h">
+      <Filter>Header Files\Physics\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityGenerator.h">
+      <Filter>Header Files\Physics\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="DragGenerator.h">
+      <Filter>Header Files\Physics\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="SpringGenerator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

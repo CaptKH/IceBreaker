@@ -65,10 +65,7 @@ string Particle::GetMeshID(void) {
 }
 
 /* Update */
-void Particle::Update(double deltaTime, Vector3 gravity) {
-	// Add gravity to environment, if there is any
-	AddForce(Vec4::Vec3to4(gravity, 1));
-
+void Particle::Update(double deltaTime) {
 	// Move everything
 	Integrate(deltaTime);
 
@@ -77,16 +74,16 @@ void Particle::Update(double deltaTime, Vector3 gravity) {
 }
 
 /* Integrate */
-void Particle::Integrate(float duration) {
+void Particle::Integrate(float deltaTime) {
 	// Add forces to acceleration
 	Vector4 currentAccel = acceleration;
-	currentAccel = forceAccum * mass;
+	currentAccel = forceAccum;
 
 	// v += a*t
-	velocity += currentAccel * duration;
+	velocity += currentAccel * deltaTime;
 
 	// p += v*t
-	position += velocity * duration;
+	position += velocity * deltaTime;
 
 	CheckVelocity();
 }

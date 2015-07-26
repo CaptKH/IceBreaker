@@ -19,7 +19,7 @@ Input::~Input(void) {
 }
 
 /* GetInput */
-void Input::GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<FireworkGenerator*>& particles) {
+void Input::GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<FireworkGenerator*>& particles, ForceManager* fManager) {
 	// Get mouse position
 	glfwGetCursorPos(window, &mouseX, &mouseY);
 
@@ -62,6 +62,7 @@ void Input::GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<F
 		canClick = false;
 	}
 
+	// If the mouse is up, you can click again
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) != GLFW_PRESS) {
 		canClick = true;
 	}

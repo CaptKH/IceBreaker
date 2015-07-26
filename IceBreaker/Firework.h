@@ -35,7 +35,7 @@ public:
 	/* Update */
 	/*  ** Updates particle, returns true if still active, false if its fuseTime has run out */
 	/*  **** float deltaTime: Time since last frame */
-	bool Update(float deltaTime, Vector3 gravity = NULL);
+	bool Update(float deltaTime);
 };
 #endif
 

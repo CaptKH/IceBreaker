@@ -61,13 +61,12 @@ public:
 	/* Update */
 	/*  ** Updates particle postion & state */
 	/*  **** double deltaTime: Time since last frame */
-	/*  **** Vector3 gravity: Which direction is gravity pointing?  Defaults to null */
-	virtual void  Update(double deltaTime, Vector3 gravity = NULL);
+	virtual void  Update(double deltaTime);
 
 	/* Integrate */
 	/*  ** Updates particles position and velocity based off of external forces */
-	/*  **** float duration: Amount of time to integrate over */
-	virtual void Integrate(float duration);
+	/*  **** float deltaTime: Amount of time to integrate over */
+	virtual void Integrate(float deltaTime);
 
 	/* AddForce */
 	/*  ** Adds force to the aggregate of forces acting on the particle */

@@ -32,8 +32,8 @@ Firework::~Firework(void) {
 }
 
 /* Update */
-bool Firework::Update(float deltaTime, Vector3 gravity){
-	Particle::Update(deltaTime, gravity);
+bool Firework::Update(float deltaTime){
+	Particle::Update(deltaTime);
 
 	// Calculate rotation speed so fireworks rotate
 	// faster at start and slower at the end

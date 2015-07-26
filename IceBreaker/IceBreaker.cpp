@@ -12,7 +12,8 @@ IceBreaker::IceBreaker(void) {
 	input = new Input();
 	cube1 = new Cube();
 
-	fwGenerators = vector<FireworkGenerator*>();
+	fManager = ForceManager::GetInstance();
+	fwManager = new FireworkManager();
 
 	srand(time(NULL));
 }
@@ -35,24 +36,15 @@ void IceBreaker::Run() {
 		renderer->Update();
 
 		// Get user input
-		input->GetInput(renderer->window, renderer->camera, renderer->deltaTime, fwGenerators);
+		input->GetInput(renderer->window, renderer->camera, renderer->deltaTime, fwManager->generators, fManager);
 
-		vector<FireworkGenerator*> stillActive = vector<FireworkGenerator*>();
+		fManager->Update(renderer->deltaTime);
 
-		for(FireworkGenerator* fwg : fwGenerators) {
-			if(!fwg->Update(renderer->deltaTime)) {
-				delete fwg;
-			}
-			else {
-				stillActive.push_back(fwg);
+		// FIREWORKS
+		fwManager->Update(renderer->deltaTime);
+		DrawFireworks();
 
-				for(Firework* fw : fwg->fireworks) {
-					renderer->Draw(*fw, RenderMode::FILLED);
-				}
-			}
-		}
-
-		fwGenerators = stillActive;
+		fManager->CleanUp();
 
 		glfwSwapBuffers(renderer->window);
 		glfwPollEvents();
@@ -62,4 +54,13 @@ void IceBreaker::Run() {
 
 	// End all GLFW functionality
 	glfwTerminate();
+}
+
+/* DrawFireworks */
+void IceBreaker::DrawFireworks(void) {
+	for(FireworkGenerator* fwg : fwManager->generators) {
+		for(Firework* fw : fwg->fireworks) {
+			renderer->Draw(*fw, RenderMode::FILLED);
+		}
+	}
 }
