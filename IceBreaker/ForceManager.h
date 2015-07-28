@@ -8,7 +8,10 @@
 #include <vector>
 #include "Constants.h"
 #include "GravityGenerator.h"
-#include "DragGenerator.h"
+#include "SpringGenerator.h"
+#include "AnchoredSpringGenerator.h"
+#include "BungeeGenerator.h"
+#include "BuoancyGenerator.h"
 
 class ForceManager
 {
@@ -23,7 +26,7 @@ protected:
 public:
 	static ForceManager* singleton;
 	GravityGenerator* gravity;
-	DragGenerator* drag;
+	AnchoredSpringGenerator* anchoredSpring;
 
 	/* GetInstance */
 	/*  ** Returns singleton */

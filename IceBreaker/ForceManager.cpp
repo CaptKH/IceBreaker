@@ -10,7 +10,7 @@ ForceManager* ForceManager::singleton = nullptr;
 ForceManager::ForceManager(void) {
 	registrations = vector<ForceRegistration*>();
 	gravity = new GravityGenerator();
-	drag = new DragGenerator(0.999f, 0.999f);
+	anchoredSpring = new AnchoredSpringGenerator(Vector4(0, 0, 0, 1), 50, 0.2);
 }
 
 /* Destructor */

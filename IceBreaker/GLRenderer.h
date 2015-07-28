@@ -20,6 +20,7 @@
 #include "Particle.h"
 #include "MeshRegistry.h"
 #include "TextureRegistry.h"
+#include "FireworkManager.h"
 
 enum RenderMode { WIREFRAME = 0, FILLED = 1 };
 
@@ -77,6 +78,14 @@ public:
 	/*  Particle p: Particle to draw */
 	/*	Texture* t: whether to render in wireframe, filled, etc. */
 	void Draw(Particle p, Texture* t);
+
+	/* DrawFireworks */
+	/*  ** Draws fireworks to screen */
+	void DrawFireworks(FireworkManager* fwm);
+
+	/* DrawBridge */
+	/*  ** Draws pieces of BridgeMaker made bridge */
+	void DrawBridge(vector<Particle*> bridgePieces);
 private:
 	double previousTime;
 

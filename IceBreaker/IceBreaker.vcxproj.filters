@@ -150,8 +150,20 @@
     <ClCompile Include="DragGenerator.cpp">
       <Filter>Source Files\Physics\Forces</Filter>
     </ClCompile>
+    <ClCompile Include="AnchoredSpringGenerator.cpp">
+      <Filter>Source Files\Physics\Forces</Filter>
+    </ClCompile>
     <ClCompile Include="SpringGenerator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Physics\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="BungeeGenerator.cpp">
+      <Filter>Source Files\Physics\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="BridgeMaker.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoancyGenerator.cpp">
+      <Filter>Source Files\Physics\Forces</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,7 +245,19 @@
     <ClInclude Include="DragGenerator.h">
       <Filter>Header Files\Physics\Forces</Filter>
     </ClInclude>
+    <ClInclude Include="AnchoredSpringGenerator.h">
+      <Filter>Header Files\Physics\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeGenerator.h">
+      <Filter>Header Files\Physics\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="BridgeMaker.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
     <ClInclude Include="SpringGenerator.h">
+      <Filter>Header Files\Physics\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoancyGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

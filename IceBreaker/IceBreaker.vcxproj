@@ -71,6 +71,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnchoredSpringGenerator.cpp" />
+    <ClCompile Include="BridgeMaker.cpp" />
+    <ClCompile Include="BungeeGenerator.cpp" />
+    <ClCompile Include="BuoancyGenerator.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="DragGenerator.cpp" />
@@ -99,6 +103,10 @@
     <ClCompile Include="Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnchoredSpringGenerator.h" />
+    <ClInclude Include="BridgeMaker.h" />
+    <ClInclude Include="BungeeGenerator.h" />
+    <ClInclude Include="BuoancyGenerator.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Cube.h" />

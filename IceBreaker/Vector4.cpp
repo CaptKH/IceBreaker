@@ -25,7 +25,7 @@ void Vector4::Clear(void) {
 
 /* Magnitude */
 float Vector4::Magnitude(void) {
-	return sqrt((x * x) + (y * y) + (z * z));
+	return sqrtf((x * x) + (y * y) + (z * z));
 }
 
 /* Normalize */

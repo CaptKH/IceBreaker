@@ -8,12 +8,15 @@
 IceBreaker::IceBreaker(void) {
 	renderer = new GLRenderer();
 	renderer->Initialize();
-
 	input = new Input();
-	cube1 = new Cube();
 
 	fManager = ForceManager::GetInstance();
 	fwManager = new FireworkManager();
+
+
+	leftAnchor = new Particle(Vector4(-0.9f, 0.0f, 0.0f), Vector4(), Vector4(), 1);
+	rightAnchor = new Particle(Vector4(0.9f, 0.0f, 0.0f), Vector4(), Vector4(), 1);
+	bMaker = new BridgeMaker(10, leftAnchor->position, rightAnchor->position);
 
 	srand(time(NULL));
 }
@@ -42,9 +45,13 @@ void IceBreaker::Run() {
 
 		// FIREWORKS
 		fwManager->Update(renderer->deltaTime);
-		DrawFireworks();
+		renderer->DrawFireworks(fwManager);
 
-		fManager->CleanUp();
+		renderer->Draw(*leftAnchor, RenderMode::FILLED);
+		renderer->Draw(*rightAnchor, RenderMode::FILLED);
+
+		bMaker->Update(renderer->deltaTime);
+		renderer->DrawBridge(bMaker->bridgePieces);
 
 		glfwSwapBuffers(renderer->window);
 		glfwPollEvents();
@@ -54,13 +61,4 @@ void IceBreaker::Run() {
 
 	// End all GLFW functionality
 	glfwTerminate();
-}
-
-/* DrawFireworks */
-void IceBreaker::DrawFireworks(void) {
-	for(FireworkGenerator* fwg : fwManager->generators) {
-		for(Firework* fw : fwg->fireworks) {
-			renderer->Draw(*fw, RenderMode::FILLED);
-		}
-	}
 }

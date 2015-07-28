@@ -10,9 +10,9 @@
 class SpringGenerator : public ForceGenerator
 {
 	Particle* other;
-
 	float springConstant;
 	float restLength;
+
 public:
 	/* Constructor */
 	SpringGenerator(Particle* p, float sC, float rL);

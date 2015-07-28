@@ -21,6 +21,7 @@
 #include "Cube.h"
 #include "ForceManager.h"
 #include "FireworkManager.h"
+#include "BridgeMaker.h"
 
 using namespace std;
 
@@ -28,10 +29,13 @@ class IceBreaker
 {
 	GLRenderer* renderer;
 	Input* input;
-	Cube* cube1;
 
 	ForceManager* fManager;
 	FireworkManager* fwManager;
+
+	BridgeMaker* bMaker;
+	Particle* leftAnchor;
+	Particle* rightAnchor;
 
 public:
 	/* Constructor */
@@ -47,9 +51,5 @@ public:
 	/* Run */
 	/*  Updates gameobjects currently active in engine and draws them to screen */
 	void Run();
-
-	/* DrawFireworks */
-	/*  ** Draws fireworks to screen */
-	void DrawFireworks(void);
 };
 #endif

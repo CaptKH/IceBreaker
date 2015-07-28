@@ -9,6 +9,6 @@
 
 #define PI 3.14159265359
 #define PIf 3.14159f
-#define GRAVITY Vector3(0, -15, 0)
+#define GRAVITY Vector3(0, -0.9, 0)
 
 #endif

@@ -26,6 +26,9 @@ void Input::GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<F
 	// Get window dimensions
 	glfwGetWindowSize(window, &windowW, &windowH);
 
+	mouseX = (mouseX - windowW/2)/(windowW/2);
+	mouseY = -(mouseY - windowH/2)/(windowH/2);
+
 	// Move camera forward
 	if(glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
 		cam->position -= Vector4(0, 0, deltaTime, 1);
@@ -52,10 +55,10 @@ void Input::GetInput(GLFWwindow* window, Camera* cam, double deltaTime, vector<F
 	}
 
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && canClick == true) {
-		float xPos = (mouseX - windowW/2)/(windowW/2);
-		float yPos = (mouseY - windowH/2)/(windowH/2);
+		float xPos = mouseX;
+		float yPos = mouseY;
 
-		FireworkGenerator* toAdd = new FireworkGenerator(xPos, -yPos);
+		FireworkGenerator* toAdd = new FireworkGenerator(xPos, yPos);
 		particles.push_back(toAdd);
 
 		// Comment this out for spark particle effects instead!

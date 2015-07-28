@@ -9,7 +9,7 @@ Particle::Particle(void) {
 	meshID = "Cube";
 
 	rotation = Matrix4(1.0f);
-	scale = Matrix4(1.0f);
+	scale = Matrix4(0.3f);
 
 	position = Vector4();
 	velocity = Vector4(0, 0, 0);
@@ -29,7 +29,7 @@ Particle::Particle(Vector4 pos, Vector4 vel, Vector4 accel, float m) {
 	meshID = "Cube";
 
 	rotation = Matrix4(1.0f);
-	scale = Matrix4(1.0f);
+	scale = Mat4::Scale(0.3f);
 
 	position = pos;
 	velocity = vel;
@@ -77,7 +77,7 @@ void Particle::Update(double deltaTime) {
 void Particle::Integrate(float deltaTime) {
 	// Add forces to acceleration
 	Vector4 currentAccel = acceleration;
-	currentAccel = forceAccum;
+	currentAccel = forceAccum * inverseMass;
 
 	// v += a*t
 	velocity += currentAccel * deltaTime;

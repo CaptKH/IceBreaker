@@ -129,6 +129,22 @@ void GLRenderer::Draw(Particle p, RenderMode r) {
 	glDisableVertexAttribArray(1);
 }
 
+/* DrawFireworks */
+void GLRenderer::DrawFireworks(FireworkManager* fwm) {
+	for(FireworkGenerator* fwg : fwm->generators) {
+		for(Firework* fw : fwg->fireworks) {
+			Draw(*fw, RenderMode::FILLED);
+		}
+	}
+}
+
+/* DrawBridge */
+void GLRenderer::DrawBridge(vector<Particle*> bridgePieces) {
+	for(Particle* p : bridgePieces) {
+		Draw(*p, RenderMode::FILLED);
+	}
+}
+
 #pragma region Private Methods
 
 /* DrawRefresh */
