@@ -30,7 +30,7 @@ bool FireworkGenerator::Update(float deltaTime) {
 	for(Firework* f : fireworks) {
 		if(!f->Update(deltaTime)) {
 			BlowUp(f);
-			ForceManager::GetInstance()->Remove(f);
+			//ForceManager::GetInstance()->Remove(f);
 			f = nullptr;
 		}
 		else {

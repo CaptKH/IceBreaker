@@ -20,6 +20,10 @@ void SpringGenerator::Update(Particle* p, float deltaTime) {
 	Vector4 force = p->position - other->position;
 	float magnitude = force.Magnitude();
 
+	if(other->position.x >=  100) {
+		printf("MOPEO");
+	}
+
 	magnitude = fabsf(magnitude - restLength);
 	magnitude *= springConstant;
 

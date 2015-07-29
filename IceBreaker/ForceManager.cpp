@@ -39,7 +39,9 @@ void ForceManager::Remove(Particle* _p) {
 
 	while(true) {
 		for(ForceRegistration* fRegistration : registrations) {
-			if(fRegistration->p == _p) break;
+			if(fRegistration->p == _p) {
+				break;
+			}
 			else toErase++;
 		}
 

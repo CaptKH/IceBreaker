@@ -15,8 +15,8 @@ BridgeMaker::BridgeMaker(unsigned numPieces, Vector4 leftAnchor, Vector4 rightAn
 
 	for( ; i < numPieces/2 + 0.5f; i++) {
 		Particle* toAdd = new Particle(Vector4(xDistance * i), Vector4(), Vector4(), 0.001f);
-		toAdd->minVelocity = Vector4(-5.0f, -5.0f, 0.0f);
-		toAdd->maxVelocity = Vector4(5.0f, 5.0f, 0.0f);
+		toAdd->minVelocity = Vector4(-0.5f, -0.5f, 0.0f);
+		toAdd->maxVelocity = Vector4(0.5f, 0.5f, 0.0f);
 		toAdd->scale = Mat4::Scale(xDistance * 1.5f);
 		bridgePieces.push_back(toAdd);
 	}
@@ -24,13 +24,15 @@ BridgeMaker::BridgeMaker(unsigned numPieces, Vector4 leftAnchor, Vector4 rightAn
 
 	ForceManager* fManager = ForceManager::GetInstance();
 
+	float sC = 0.5f;
+
 	for(int i = 0; i < bridgePieces.size(); i++) {
 		
-		if(i == 0) fManager->Add(bridgePieces[i], new BungeeGenerator(bridgePieces[i+1], 1.0f, xDistance));
-		else if(i == bridgePieces.size() - 1) fManager->Add(bridgePieces[i], new BungeeGenerator(bridgePieces[i-1], 1.0f, xDistance));
+		if(i == 0) fManager->Add(bridgePieces[i], new SpringGenerator(bridgePieces[i+1], sC, xDistance/2));
+		else if(i == bridgePieces.size() - 1) fManager->Add(bridgePieces[i], new SpringGenerator(bridgePieces[i-1], sC, xDistance/2));
 		else {
-			fManager->Add(bridgePieces[i], new BungeeGenerator(bridgePieces[i-1], 1.0f, xDistance));
-			fManager->Add(bridgePieces[i], new BungeeGenerator(bridgePieces[i+1], 1.0f, xDistance));
+			fManager->Add(bridgePieces[i], new SpringGenerator(bridgePieces[i-1], sC, xDistance/2));
+			fManager->Add(bridgePieces[i], new SpringGenerator(bridgePieces[i+1], sC, xDistance/2));
 		}
 
 		//fManager->Add(bridgePieces[i], new BuoancyGenerator(0.3f, 0.027, 0.5f, 10.0f));

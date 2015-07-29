@@ -16,7 +16,7 @@ IceBreaker::IceBreaker(void) {
 
 	leftAnchor = new Particle(Vector4(-0.9f, 0.0f, 0.0f), Vector4(), Vector4(), 1);
 	rightAnchor = new Particle(Vector4(0.9f, 0.0f, 0.0f), Vector4(), Vector4(), 1);
-	bMaker = new BridgeMaker(10, leftAnchor->position, rightAnchor->position);
+	bMaker = new BridgeMaker(25, leftAnchor->position, rightAnchor->position);
 
 	srand(time(NULL));
 }

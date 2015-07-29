@@ -1,10 +1,9 @@
-﻿Build started 7/27/2015 9:54:49 PM.
+﻿Build started 7/28/2015 8:00:59 PM.
      1>Project "C:\Users\khewi_000\Documents\IceBreaker\IceBreaker\IceBreaker.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt BridgeMaker.cpp
-         BridgeMaker.cpp
-     1>c:\users\khewi_000\documents\icebreaker\icebreaker\bridgemaker.cpp(27): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\khewi_000\documents\icebreaker\icebreaker\bridgemaker.cpp(55): warning C4018: '<' : signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Particle.cpp
+         Particle.cpp
+     1>c:\users\khewi_000\documents\icebreaker\icebreaker\particle.cpp(70): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\khewi_000\Documents\IceBreaker\Debug\IceBreaker.exe" /INCREMENTAL /NOLOGO opengl32.lib glew32.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\khewi_000\Documents\IceBreaker\Debug\IceBreaker.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\khewi_000\Documents\IceBreaker\Debug\IceBreaker.lib" /MACHINE:X86 Debug\AnchoredSpringGenerator.obj
          Debug\BridgeMaker.obj
@@ -36,10 +35,9 @@
          Debug\Vector2.obj
          Debug\Vector3.obj
          Debug\Vector4.obj
-     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
          IceBreaker.vcxproj -> C:\Users\khewi_000\Documents\IceBreaker\Debug\IceBreaker.exe
      1>Done Building Project "C:\Users\khewi_000\Documents\IceBreaker\IceBreaker\IceBreaker.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.31
+Time Elapsed 00:00:01.44

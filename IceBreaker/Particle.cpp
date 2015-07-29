@@ -82,10 +82,10 @@ void Particle::Integrate(float deltaTime) {
 	// v += a*t
 	velocity += currentAccel * deltaTime;
 
+	CheckVelocity();
+
 	// p += v*t
 	position += velocity * deltaTime;
-
-	CheckVelocity();
 }
 
 /* CheckVelocity */
